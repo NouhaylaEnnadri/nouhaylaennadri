@@ -25,7 +25,11 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`w-full flex justify-center pt-6 pb-6 z-50 ${isSticky ? 'fixed top-0 left-0' : 'relative'}`}>
+    <div
+      className={`w-full flex justify-center pt-6 pb-6 z-50 max-lg:p-7 ${
+        isSticky ? "fixed top-0 left-0" : "relative"
+      }`}
+    >
       <div className="navbar bg-primary bg-opacity-30 backdrop-blur-md shadow-lg max-w-md w-full rounded-lg">
         <div className="flex-1 text-center">
           <a className="btn btn-ghost text-xl">Noyl</a>
