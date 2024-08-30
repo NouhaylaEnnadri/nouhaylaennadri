@@ -1,4 +1,10 @@
-import { AdjacentPostCard, Category, Hero, PostCard } from "@/components";
+import {
+  AdjacentPostCard,
+  Category,
+  Hero,
+  PostCard,
+  SocialMedia,
+} from "@/components";
 import { getPosts } from "@/services";
 
 export default function Home({ posts }) {
@@ -10,34 +16,77 @@ export default function Home({ posts }) {
     <>
       <Hero />
 
-      <div className="border-t border-gray-300 mt-4 mb-8 mx-6">
+      <div className="border  border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Category Section */}
-          <div className="lg:col-span-2 col-span-1 border-r border-gray-300 pr-4">
-            <div className="sticky top-16 h-screen p-4 bg-white">
-              <div className="border-b border-gray-300 pb-4 mb-4">
-                <h2 className="text-lg font-semibold">Topics</h2>
-              </div>
+          {/* Left Section */}
+          <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16 lg:h-screen p-4 sm:p-6 bg-transparent flex flex-col overflow-y-auto">
+            {/* Sticky on Mobile */}
+
+            <div className="lg:block hidden border-b border-gray-300 pb-4 mb-4">
+              <h2 className="lg:block hidden text-lg font-semibold">Topics</h2>
+            </div>
+            <div className="p-4 rounded-md bg-white shadow-md">
               <Category />
+            </div>
+            <div className="lg:block hidden mt-6 bg-white rounded-md p-4 shadow-md">
+              <SocialMedia />
             </div>
           </div>
 
-          {/* Main Posts Section */}
-          <div className="lg:col-span-6 col-span-1 border-r border-gray-300 p-6">
-            {/* Post Cards */}
-            {mainPosts.map((post) => (
-              <PostCard key={post.node.id} post={post.node} />
-            ))}
-          </div>
-
-          {/* Adjacent Post Card Section */}
-          <div className="lg:col-span-4 col-span-1">
-            <div className="sticky top-16 h-screen p-6 bg-white border-l border-gray-300">
-              <div className="border-b border-gray-300 pb-4 mb-4">
-                <h2 className="text-lg font-semibold"></h2>
+          {/* Main Content and Adjacent Post Card Sections */}
+          <div className="lg:col-span-10 col-span-1 flex flex-col lg:flex-row gap-6">
+            {/* Main Posts Section */}
+            <div className="lg:w-3/5 p-4 sm:p-6 space-y-6 overflow-y-auto">
+              {/* Search Bar for Smaller Screens */}
+              <div className="lg:hidden mb-4">
+                <label className="input input-bordered input-secondary flex items-center gap-2">
+                  <input type="text" className="grow" placeholder="Search" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </label>
               </div>
-              <div className="space-y-6">
-                <AdjacentPostCard post={adjacentPost?.node} />
+
+              {/* Post Cards */}
+              {mainPosts.map((post) => (
+                <PostCard key={post.node.id} post={post.node} />
+              ))}
+            </div>
+
+            {/* Adjacent Post Card Section */}
+            <div className="lg:w-2/5 p-4 sm:p-6 lg:sticky lg:top-16 lg:h-screen overflow-y-auto">
+              {/* Search Bar for Larger Screens */}
+              <div className="hidden lg:block mb-4">
+                <label className="input input-bordered input-secondary flex items-center gap-2">
+                  <input type="text" className="grow" placeholder="Search" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </label>
+              </div>
+
+              <div className="bg-white p-4 rounded-md shadow-sm border-l border-gray-300">
+                <div className="space-y-6">
+                  <AdjacentPostCard post={adjacentPost?.node} />
+                </div>
               </div>
             </div>
           </div>

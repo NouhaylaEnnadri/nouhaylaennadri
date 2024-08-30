@@ -43,37 +43,24 @@ const recentPosts = [
 
 const AdjacentPostCard = () => {
   return (
-    <div className="">
-      {/* Search Bar */}
-      <label className="input input-bordered input-secondary flex items-center gap-2 mb-4">
-        <input type="text" className="grow" placeholder="Search" />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-          className="h-4 w-4 opacity-70"
-        >
-          <path
-            fillRule="evenodd"
-            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </label>
-
+    <div>
+     
       {/* Recent Posts */}
       <div className="recent-posts">
-        <h2 className="text-lg font-semibold mb-2 text-primary">Recent Posts</h2>
+        <h2 className="text-lg font-semibold mb-4 text-primary">Recent Posts</h2>
         <ul className="space-y-4">
           {recentPosts.map((post) => (
-            <li key={post.slug} className="flex items-start space-x-4 p-4 border rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow">
+            <li
+              key={post.slug}
+              className="flex items-start space-x-4 p-4 border rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow"
+            >
               <img
                 src={post.author.image}
                 alt={post.author.name}
                 className="w-10 h-10 rounded-full border border-gray-300"
               />
               <div className="flex-1">
-                <Link href={`/posts/${post.slug}`}>
+                <Link href={`/posts/${post.slug}`} className="text-blue-600 hover:underline">
                   {post.title}
                 </Link>
                 <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -85,6 +72,11 @@ const AdjacentPostCard = () => {
             </li>
           ))}
         </ul>
+        <div className="mt-4 text-center">
+          <Link href="/posts" className="text-blue-600 hover:underline font-semibold">
+            See More
+          </Link>
+        </div>
       </div>
     </div>
   );
