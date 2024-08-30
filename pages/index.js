@@ -14,14 +14,14 @@ export default function Home({ posts }) {
 
   return (
     <>
-      <Hero />
-
       <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Section */}
           <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16 lg:h-screen">
-            <div className=" rounded-lg p-4 
-            ">
+            <div
+              className=" rounded-lg p-4 
+            "
+            >
               <h2 className="text-lg hidden lg:block font-semibold border-b border-gray-200 pb-2 mb-4">
                 Topics
               </h2>

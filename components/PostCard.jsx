@@ -1,42 +1,42 @@
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
-import { Hero } from ".";
 
 const PostCard = ({ post }) => {
   return (
-    <>
-     {/* Search Bar */}
-    
-      <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
-        <div className="relative overflow-hidden shadow-md pb-80 mb-6">
-          <img
-            src={post.featuredImage.url}
-            alt=""
-            className="object-top absolute h-80 w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg"
-          />
-        </div>
-        <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
-          <Link href={`/post/${post.slug}`}>{post.title}</Link>
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 transition-transform transform hover:scale-105 border border-gray-200">
+      {/* Featured Image */}
+      <div className="relative">
+        <img
+          src={post.featuredImage.url}
+          alt={post.title}
+          className="w-full h-60 object-cover rounded-t-lg"
+        />
+      </div>
+      
+      {/* Content */}
+      <div className="p-6">
+        {/* Title */}
+        <h1 className="text-2xl font-semibold text-gray-900 mb-4 hover:text-pink-600 transition-colors duration-300">
+          <Link href={`/post/${post.slug}`} passHref>
+            {post.title}
+          </Link>
         </h1>
-        <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
-          <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8 items-center">
+        
+        {/* Author and Date */}
+        <div className="flex items-center justify-between mb-4 text-gray-600 text-sm">
+          <div className="flex items-center">
             <img
-              unoptimized
-              alt={post.author.name}
-              height="30px"
-              width="30px"
-              className="align-middle rounded-full"
               src={post.author.photo.url}
+              alt={post.author.name}
+              className="w-8 h-8 rounded-full object-cover mr-2"
             />
-            <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-              {post.author.name}
-            </p>
+            <p className="font-medium">{post.author.name}</p>
           </div>
-          <div className="font-medium text-gray-700">
+          <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 inline mr-2 text-pink-500"
+              className="h-5 w-5 mr-2 text-pink-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -48,23 +48,23 @@ const PostCard = ({ post }) => {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span className="align-middle">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
-            </span>
+            <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
           </div>
         </div>
-        <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
-          {post.excerpt}
-        </p>
+        
+        {/* Excerpt */}
+        <p className="text-gray-700 mb-6">{post.excerpt}</p>
+        
+        {/* Read More Button */}
         <div className="text-center">
-          <Link href={`/post/${post.slug}`}>
-            <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
+          <Link href={`/post/${post.slug}`} passHref>
+            <span className="inline-block bg-pink-600 text-white text-lg font-medium rounded-full px-6 py-3 transition-transform transform hover:scale-105 cursor-pointer">
               Continue Reading
             </span>
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
