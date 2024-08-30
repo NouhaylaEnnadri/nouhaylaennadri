@@ -1,11 +1,6 @@
 import Link from "next/link";
 import React from "react";
-const categories = [
-  { name: "category 1", slug: "slug1" },
-  { name: "category 2", slug: "slug2" },
-  { name: "category 2", slug: "slug2" },
-  { name: "category 2", slug: "slug2" },
-];
+;
 const Hero = () => {
   return (
     <div>
@@ -43,36 +38,11 @@ const Hero = () => {
                   <span className="relative "> OYL's BLOG</span>
                 </h2>
               </div>
-              <label className="input input-bordered input-secondary flex items-center gap-2   ">
-                <input type="text" className="grow" placeholder="seach" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="h-4 w-4 opacity-70"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </label>
+             
             </div>
           </div>
         </div>
-        <nav class="pb-6 flex gap-2 flex-wrap justify-center text-base">
-          {categories.map((category) => (
-            <a key={category.slug}>
-              <Link
-                class="text-center my-1 inline-block w-32 rounded-full bg-secondary  px-3 py-1.5 font-semibold text-black duration-200 hover:bg-opacity-95 hover:text-white hover:no-underline"
-                href={`/category/${category.slug}`}
-              >
-                <span>{category.name}</span>
-              </Link>
-            </a>
-          ))}
-        </nav>
+       
       </div>
     </div>
   );
