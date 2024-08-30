@@ -16,20 +16,15 @@ export default function Home({ posts }) {
     <>
       <Hero />
 
-      <div className="border  border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
+      <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Section */}
-          <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16 lg:h-screen p-4 sm:p-6 bg-transparent flex flex-col overflow-y-auto">
-            {/* Sticky on Mobile */}
-
-            <div className="lg:block hidden border-b border-gray-300 pb-4 mb-4">
-              <h2 className="lg:block hidden text-lg font-semibold">Topics</h2>
-            </div>
-            <div className="p-4 rounded-md bg-white shadow-md">
+          <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16 lg:h-screen">
+            <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+              <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">
+                Topics
+              </h2>
               <Category />
-            </div>
-            <div className="lg:block hidden mt-6 bg-white rounded-md p-4 shadow-md">
-              <SocialMedia />
             </div>
           </div>
 
@@ -63,7 +58,7 @@ export default function Home({ posts }) {
             </div>
 
             {/* Adjacent Post Card Section */}
-            <div className="lg:w-2/5 p-4 sm:p-6 lg:sticky lg:top-16 lg:h-screen overflow-y-auto">
+            <div className="lg:w-2/5 p-4 border-l border-gray-300 bg-gray-50 lg:sticky lg:top-16 lg:h-screen overflow-y-auto">
               {/* Search Bar for Larger Screens */}
               <div className="hidden lg:block mb-4">
                 <label className="input input-bordered input-secondary flex items-center gap-2">
@@ -83,10 +78,8 @@ export default function Home({ posts }) {
                 </label>
               </div>
 
-              <div className="bg-white p-4 rounded-md shadow-sm border-l border-gray-300">
-                <div className="space-y-6">
-                  <AdjacentPostCard post={adjacentPost?.node} />
-                </div>
+              <div className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
+                <AdjacentPostCard post={adjacentPost?.node} />
               </div>
             </div>
           </div>
