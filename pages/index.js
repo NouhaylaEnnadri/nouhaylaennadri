@@ -12,7 +12,7 @@ export default function Home({ posts }) {
       <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Section */}
-          <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16 lg:h-screen">
+          <div className="lg:col-span-2 col-span-1 border-r border-gray-300">
             <div className="rounded-lg p-4">
               <h2 className="text-lg hidden lg:block font-semibold border-b border-gray-200 pb-2 mb-4">
                 Topics
@@ -21,7 +21,7 @@ export default function Home({ posts }) {
             </div>
           </div>
 
-          {/* Main Content and Adjacent Post Card Sections */}
+          {/* Main Content and Sticky Right Section */}
           <div className="lg:col-span-10 col-span-1 flex flex-col lg:flex-row gap-6">
             {/* Main Posts Section */}
             <div className="lg:w-3/5 p-4 sm:p-6 space-y-6">
@@ -50,10 +50,10 @@ export default function Home({ posts }) {
               ))}
             </div>
 
-            {/* Adjacent Post Card Section */}
-            <div className="lg:w-2/5 p-4 border-l border-gray-300 lg:sticky lg:top-16 lg:h-screen">
-              {/* Search Bar for Larger Screens */}
-              <div className="hidden lg:block mb-4">
+            {/* Sticky Right Section */}
+            <div className="lg:w-2/5 p-4 border-l border-gray-300 lg:sticky lg:top-16 lg:h-screen flex flex-col">
+              {/* Sticky Search Bar */}
+              <div className="sticky top-16  p-4 shadow-md mb-4">
                 <label className="input input-bordered input-secondary flex items-center gap-2">
                   <input type="text" className="grow" placeholder="Search" />
                   <svg
@@ -71,7 +71,8 @@ export default function Home({ posts }) {
                 </label>
               </div>
 
-              <div className=" p-4   hidden lg:block shadow-md border-t  h-full">
+              {/* Adjacent Post Card */}
+              <div className=" p-4 rounded-lg shadow-md  border-gray-300 flex-grow overflow-y-auto">
                 <AdjacentPostCard post={adjacentPost?.node} />
               </div>
             </div>
