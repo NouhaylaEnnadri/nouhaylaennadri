@@ -2,22 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* styles/globals.css or in your Tailwind CSS file */
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 0%;
+/* Filling animation for the name */
+@keyframes fillAnimation {
+  from {
+    background-size: 0% 100%;
   }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
+  to {
+    background-size: 100% 100%;
   }
 }
 
-.animate-gradient {
-  background: linear-gradient(45deg, #00c6ff, #0072ff);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+.fill-animation {
+  position: relative;
+  display: inline-block;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, blue, purple);
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fillAnimation 2s ease forwards; /* Adjust duration and easing */
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  color: transparent;
+}
+
+.letter::before {
+  content: attr(data-letter);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, blue, purple);
+  background-clip: text;
+  color: transparent;
+  display: block;
+  animation: fillAnimation 0.5s ease forwards; /* Adjust duration and easing */
 }

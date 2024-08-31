@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from "react";
 import {
   AdjacentPostCard,
   Category,
-  Hero,
   PostCard,
-  SocialMedia,
+  Preloader,
 } from "@/components";
 import { getPosts } from "@/services";
 
@@ -12,16 +12,15 @@ export default function Home({ posts }) {
   const mainPosts = posts.slice(0, 3);
   const adjacentPost = posts.slice(3, 4)[0]; // Get the fourth post for the adjacent section
 
+  // State to manage the loading state
+  
   return (
     <>
       <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Section */}
           <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16 lg:h-screen">
-            <div
-              className=" rounded-lg p-4 
-            "
-            >
+            <div className="rounded-lg p-4">
               <h2 className="text-lg hidden lg:block font-semibold border-b border-gray-200 pb-2 mb-4">
                 Topics
               </h2>
@@ -59,7 +58,7 @@ export default function Home({ posts }) {
             </div>
 
             {/* Adjacent Post Card Section */}
-            <div className="lg:w-2/5 p-4 border-l border-gray-300  lg:sticky lg:top-16 lg:h-screen overflow-y-auto">
+            <div className="lg:w-2/5 p-4 border-l border-gray-300 lg:sticky lg:top-16 lg:h-screen overflow-y-auto">
               {/* Search Bar for Larger Screens */}
               <div className="hidden lg:block mb-4">
                 <label className="input input-bordered input-secondary flex items-center gap-2">
