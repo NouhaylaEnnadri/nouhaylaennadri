@@ -71,7 +71,7 @@ export default function Home({ posts }) {
                 </label>
               </div>
 
-              <div className=" p-4 shadow-md border-t  h-full">
+              <div className=" p-4   hidden lg:block shadow-md border-t  h-full">
                 <AdjacentPostCard post={adjacentPost?.node} />
               </div>
             </div>
