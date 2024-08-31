@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  AdjacentPostCard,
-  Category,
-  PostCard,
-  Preloader,
-} from "@/components";
+import React from "react";
+import { AdjacentPostCard, Category, PostCard } from "@/components";
 import { getPosts } from "@/services";
 
 export default function Home({ posts }) {
@@ -12,8 +7,6 @@ export default function Home({ posts }) {
   const mainPosts = posts.slice(0, 3);
   const adjacentPost = posts.slice(3, 4)[0]; // Get the fourth post for the adjacent section
 
-  // State to manage the loading state
-  
   return (
     <>
       <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
@@ -31,7 +24,7 @@ export default function Home({ posts }) {
           {/* Main Content and Adjacent Post Card Sections */}
           <div className="lg:col-span-10 col-span-1 flex flex-col lg:flex-row gap-6">
             {/* Main Posts Section */}
-            <div className="lg:w-3/5 p-4 sm:p-6 space-y-6 overflow-y-auto">
+            <div className="lg:w-3/5 p-4 sm:p-6 space-y-6">
               {/* Search Bar for Smaller Screens */}
               <div className="lg:hidden mb-4">
                 <label className="input input-bordered input-secondary flex items-center gap-2">
@@ -58,7 +51,7 @@ export default function Home({ posts }) {
             </div>
 
             {/* Adjacent Post Card Section */}
-            <div className="lg:w-2/5 p-4 border-l border-gray-300 lg:sticky lg:top-16 lg:h-screen overflow-y-auto">
+            <div className="lg:w-2/5 p-4 border-l border-gray-300 lg:sticky lg:top-16 lg:h-screen">
               {/* Search Bar for Larger Screens */}
               <div className="hidden lg:block mb-4">
                 <label className="input input-bordered input-secondary flex items-center gap-2">
@@ -78,7 +71,7 @@ export default function Home({ posts }) {
                 </label>
               </div>
 
-              <div className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
+              <div className=" p-4 shadow-md border-t  h-full">
                 <AdjacentPostCard post={adjacentPost?.node} />
               </div>
             </div>

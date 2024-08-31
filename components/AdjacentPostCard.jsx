@@ -21,24 +21,7 @@ const recentPosts = [
     },
     date: "August 29, 2024",
   },
-  {
-    title: "Advanced Tailwind CSS Techniques",
-    slug: "advanced-tailwind-css",
-    author: {
-      name: "Alice Johnson",
-      image: "https://via.placeholder.com/40", // Placeholder image URL
-    },
-    date: "August 28, 2024",
-  },
-  {
-    title: "AI in Web Development",
-    slug: "ai-web-development",
-    author: {
-      name: "Bob Brown",
-      image: "https://via.placeholder.com/40", // Placeholder image URL
-    },
-    date: "August 27, 2024",
-  },
+  
 ];
 
 const AdjacentPostCard = () => {
