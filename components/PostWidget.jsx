@@ -16,7 +16,6 @@ const PostWidget = ({ category, slug }) => {
           result = await getRecentPosts();
         }
         setWidgetPosts(result);
-        console.log(result);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -50,8 +49,13 @@ const PostWidget = ({ category, slug }) => {
                 >
                   {post.node.title}
                 </Link>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  <span> {post.node.category.name}</span>
+                <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  {/* Display Category as a Tag */}
+                  {post.node.category && post.node.category.length > 0 && (
+                    <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
+                      {post.node.category[0].name}
+                    </span>
+                  )}
                   <span className="mx-2">•</span>
                   <span>
                     {moment(post.node.createdAt).format("MMM DD, YYYY")}
