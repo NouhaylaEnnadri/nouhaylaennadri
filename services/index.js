@@ -43,7 +43,7 @@ export const getPosts = async () => {
 export const getRecentPosts = async () => {
   const query = gql`
     query GetRecentPosts {
-      postsConnection(orderBy: createdAt_DESC, first: 3) {
+      postsConnection(orderBy: createdAt_DESC, first: 1) {
         edges {
           node {
             title

@@ -1,5 +1,5 @@
 import React from "react";
-import { AdjacentPostCard, Category, PostCard } from "@/components";
+import { AdjacentPostCard, Category, PostCard, PostWidget } from "@/components";
 import { getPosts } from "@/services";
 
 export default function Home({ posts }) {
@@ -73,7 +73,7 @@ export default function Home({ posts }) {
 
               {/* Adjacent Post Card */}
               <div className="p-4 rounded-lg shadow-md border-gray-300 flex-grow overflow-y-auto">
-                <AdjacentPostCard post={adjacentPost?.node} />
+                <PostWidget />
               </div>
             </div>
           </div>
