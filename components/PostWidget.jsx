@@ -31,37 +31,37 @@ const PostWidget = ({ category, slug }) => {
         <h2 className="text-lg font-semibold mb-4 text-primary">
           {slug ? "Related Posts" : "Recent Posts"}
         </h2>
-        <ul className="space-y-4">
+        {/* Remove default list styling */}
+        <ul className="list-none space-y-4 p-0 m-0">
           {widgetPosts.map((post) => (
-            <li
-              key={post.node.slug}
-              className="flex items-start space-x-4 p-4 border rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow"
-            >
-              <img
-                src={post.node.featuredImage.url}
-                alt={post.node.title}
-                className="w-10 h-10 object-cover rounded-md border border-gray-300"
-              />
-              <div className="flex-1">
-                <Link
-                  href={`/post/${post.node.slug}`}
-                  className="text-blue-600 hover:underline"
-                >
-                  {post.node.title}
-                </Link>
-                <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  {/* Display Category as a Tag */}
-                  {post.node.category && post.node.category.length > 0 && (
-                    <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
-                      {post.node.category[0].name}
+            <li key={post.node.slug}>
+              <Link
+                href={`/post/${post.node.slug}`}
+                className="flex items-start space-x-4 p-4 border rounded-lg hover:bg-gray-100 transition-shadow"
+              >
+                <img
+                  src={post.node.featuredImage.url}
+                  alt={post.node.title}
+                  className="w-10 h-10 object-cover rounded-md border border-gray-300"
+                />
+                <div className="flex-1">
+                  <div className="text-blue-800 font-semibold">
+                    {post.node.title}
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    {/* Display Category as a Smaller Tag in Green */}
+                    {post.node.category && post.node.category.length > 0 && (
+                      <span className="inline-block bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">
+                        {post.node.category[0].name}
+                      </span>
+                    )}
+                    <span className="mx-2">•</span>
+                    <span>
+                      {moment(post.node.createdAt).format("MMM DD, YYYY")}
                     </span>
-                  )}
-                  <span className="mx-2">•</span>
-                  <span>
-                    {moment(post.node.createdAt).format("MMM DD, YYYY")}
-                  </span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           ))}
         </ul>
