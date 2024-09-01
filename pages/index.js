@@ -4,9 +4,7 @@ import { getPosts } from "@/services";
 
 export default function Home({ posts }) {
   // Divide posts into two for the main section and one for the adjacent section
-  const mainPosts = posts.slice(0, 3);
-  const adjacentPost = posts.slice(3, 4)[0]; // Get the fourth post for the adjacent section
-
+  
   return (
     <>
       <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
@@ -45,9 +43,8 @@ export default function Home({ posts }) {
               </div>
 
               {/* Post Cards */}
-              {mainPosts.map((post) => (
-                <PostCard key={post.node.id} post={post.node} />
-              ))}
+                <PostCard  />
+            
             </div>
 
             {/* Right Section */}
@@ -81,11 +78,4 @@ export default function Home({ posts }) {
       </div>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
-  return {
-    props: { posts },
-  };
 }

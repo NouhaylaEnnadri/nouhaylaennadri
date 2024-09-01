@@ -24,7 +24,7 @@ const Category = () => {
         <Link
           key={category.slug}
           href={`/category/${category.slug}`}
-          className="px-4 py-2 font-semibold rounded-t-md text-gray-700 hover:text-pink-600 transition duration-300"
+          className="px-3 py-1 font-medium rounded-full bg-gray-200 text-gray-800 hover:bg-pink-600 hover:text-white transition duration-300 border border-gray-300 hover:border-pink-600"
         >
           {category.name}
         </Link>
