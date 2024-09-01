@@ -37,7 +37,7 @@ const PostWidget = ({ category, slug }) => {
             <li key={post.node.slug}>
               <Link
                 href={`/post/${post.node.slug}`}
-                className="flex items-start space-x-4 p-4 border rounded-lg hover:bg-gray-100 transition-shadow"
+                className="flex items-start space-x-4 p-4 border rounded-lg transition-shadow hover:shadow-lg"
               >
                 <img
                   src={post.node.featuredImage.url}
