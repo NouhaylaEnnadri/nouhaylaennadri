@@ -16,11 +16,7 @@ const Category = () => {
     };
 
     fetchCategories();
-    
-    const intervalId = setInterval(fetchCategories, 30000); // Fetch categories every 30 seconds
-
-    return () => clearInterval(intervalId); // Clean up on component unmount
-  }, []); 
+  }, []);
 
   return (
     <nav className="flex gap-4 flex-wrap justify-start text-sm border-b border-gray-300 pb-2">
