@@ -92,18 +92,13 @@ export const getRelatedPosts = async () => {
 export const getCategory = async () => {
   const query = gql`
     query GetCategory {
-      postsConnection(orderBy: createdAt_DESC, first: 3) {
-        edges {
-          node {
-            category {
-              name
-            }
-          }
-        }
+      categories {
+        name
+        slug
       }
     }
   `;
 
   const result = await request(graphqlAPI, query);
-  return result.postsConnection.edges;
+  return result.categories; // Adjust based on the actual result shape
 };
