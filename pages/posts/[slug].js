@@ -18,7 +18,7 @@ const PostDetails = ({ post }) => {
             {/* Main Post Content */}
             <PostDetail post={post} />
             <Author author={post.author} />
-            <CommentsForm />
+            <CommentsForm slug={post.slug} />
             <Comments />
           </div>
           <div className="col-span-1 lg:col-span-4">
