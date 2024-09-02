@@ -72,7 +72,9 @@ const PostCard = () => {
                   />
                   <div className="flex flex-col">
                     <p className="font-medium">{post.node.author.name}</p>
-                    <span>{moment(post.node.createdAt).format("MMM DD, YYYY")}</span>
+                    <span>
+                      {moment(post.node.createdAt).format("MMM DD, YYYY")}
+                    </span>
                   </div>
                 </div>
               </div>

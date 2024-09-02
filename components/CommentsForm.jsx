@@ -1,7 +1,7 @@
 import React from "react";
 
 const CommentsForm = () => {
-  return <div></div>;
+  return <div>CommentsForm</div>;
 };
 
 export default CommentsForm;

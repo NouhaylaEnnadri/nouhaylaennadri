@@ -1,7 +1,7 @@
 import React from "react";
 
 const Author = () => {
-  return <div></div>;
+  return <div>Author</div>;
 };
 
 export default Author;
