@@ -90,3 +90,26 @@
     rotate: 1080deg;
   }
 }
+
+.prose pre {
+  background-color: #1e1e1e; /* Dark background like VS Code */
+  color: #d4d4d4; /* Light text for code */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace; /* Use a monospaced font */
+}
+.prose code {
+  background-color: #f5f5f5; /* Light background for inline code */
+  color: #d63384; /* Use a color that stands out */
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'Fira Code', monospace; /* Consistent font for inline code */
+}
+.prose a {
+  color: #3182ce; /* Blue color for links */
+  text-decoration: underline;
+}
+.prose a:hover {
+  color: #2b6cb0; /* Darker blue on hover */
+}

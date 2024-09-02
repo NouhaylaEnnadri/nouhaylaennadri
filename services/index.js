@@ -132,9 +132,7 @@ export const getPostsDetails = async (slug) => {
         featuredImage {
           url
         }
-        content {
-          raw
-        }
+        content
       }
     }
   `;
