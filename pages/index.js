@@ -1,10 +1,7 @@
 import React from "react";
-import { AdjacentPostCard, Category, PostCard, PostWidget } from "@/components";
-import { getPosts } from "@/services";
+import { Category, PostCard, PostWidget } from "@/components";
 
-export default function Home({ posts }) {
-  // Divide posts into two for the main section and one for the adjacent section
-  
+export default function Home() {
   return (
     <>
       <div className="border rounded-lg border-gray-300 mt-4 mb-8 mx-4 sm:mx-6">
@@ -43,8 +40,8 @@ export default function Home({ posts }) {
               </div>
 
               {/* Post Cards */}
-                <PostCard  />
-            
+              <PostCard />
+
             </div>
 
             {/* Right Section */}
@@ -61,14 +58,13 @@ export default function Home({ posts }) {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M9.965 11.026a5 5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
                       clipRule="evenodd"
                     />
                   </svg>
                 </label>
               </div>
 
-              {/* Adjacent Post Card */}
               <div className="p-4 rounded-lg shadow-md border-gray-300 flex-grow overflow-y-auto">
                 <PostWidget />
               </div>

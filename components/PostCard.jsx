@@ -20,9 +20,12 @@ const PostCard = () => {
   }, []);
 
   return (
-    <div className="dark-glass-container p-6 shadow-lg rounded-lg overflow-hidden mb-8 transition-transform transform hover:scale-105 border border-gray-700">
+    <div className="space-y-8">
       {posts.map((post) => (
-        <div key={post.node.slug} className="mb-8">
+        <div
+          key={post.node.slug}
+          className="dark-glass-container p-6 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 border border-gray-700"
+        >
           {/* Featured Image */}
           <div className="relative mb-4">
             <img
