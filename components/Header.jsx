@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isTopicsOpen, setIsTopicsOpen] = useState(false);
 
   return (
-    <nav className=" backdrop-blur-2xl sticky top-0 z-50 shadow-md mx-6 my-2 rounded-xl">
+    <nav className=" border border-secondary backdrop-blur-2xl sticky top-0 z-50 shadow-md mx-6 my-2 rounded-xl">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
