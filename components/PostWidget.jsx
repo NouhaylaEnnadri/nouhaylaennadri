@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import moment from "moment";
 import { getRecentPosts, getRelatedPosts } from "@/services";
+import Image from "next/image";
 
 /**
  * PostWidget Component
@@ -51,7 +52,10 @@ const PostWidget = ({ category, slug }) => {
                 className="flex items-start space-x-4 p-4 border rounded-lg transition-shadow hover:shadow-lg"
               >
                 {/* Post Image */}
-                <img
+                <Image
+                  width={32} // Provide width as required
+                  height={32} // Provide height as required
+                  unoptimized
                   src={post.node.featuredImage.url}
                   alt={post.node.title}
                   className="w-10 h-10 object-cover rounded-md border border-gray-300"

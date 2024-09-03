@@ -69,7 +69,10 @@ const PostCard = () => {
               {/* Author and Date */}
               <div className="flex items-center mb-4 text-gray-400 text-sm">
                 <div className="flex items-center">
-                  <img
+                  <Image
+                    unoptimized
+                    width={32} // Provide width as required
+                    height={32} // Provide height as required
                     src={post.node.author.photo.url}
                     alt={post.node.author.name}
                     className="w-8 h-8 rounded-full object-cover mr-2"
