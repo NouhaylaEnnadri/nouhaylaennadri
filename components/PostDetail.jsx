@@ -1,33 +1,42 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import moment from 'moment';
-import dynamic from 'next/dynamic';
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import moment from "moment";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
 // Dynamic import of SyntaxHighlighter for client-side only
 const SyntaxHighlighter = dynamic(() =>
-  import('react-syntax-highlighter').then(mod => mod.Prism)
+  import("react-syntax-highlighter").then((mod) => mod.Prism)
 );
 
-import materialDark from 'react-syntax-highlighter/dist/cjs/styles/prism/material-dark';
+import materialDark from "react-syntax-highlighter/dist/cjs/styles/prism/material-dark";
 
 const PostDetail = ({ post }) => {
+  if (!post) {
+    return <div>Loading...</div>; // Handle the case where post data is not available
+  }
+
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md mb-6">
-        <img
+        <Image
+          width={800} // Adjust width as needed
+          height={400} // Adjust height as needed
+          unoptimized
           src={post.featuredImage.url}
-          alt="Featured"
-          className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
+          alt={post.title} // Use the post title for alt text
+          className="object-cover h-full w-full rounded-t-lg lg:rounded-lg"
         />
       </div>
       <div className="px-4 lg:px-0">
-        <div className="flex items-center mb-8 w-full">
+        <div className="flex items-center mb-8">
           <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
-            <img
+            <Image
+              unoptimized
               alt={post.author.name}
-              height="30px"
-              width="30px"
+              width={32}
+              height={32}
               className="align-middle rounded-full"
               src={post.author.photo.url}
             />
@@ -51,7 +60,7 @@ const PostDetail = ({ post }) => {
               />
             </svg>
             <span className="align-middle">
-              {moment(post.createdAt).format('MMM DD, YYYY')}
+              {moment(post.createdAt).format("MMM DD, YYYY")}
             </span>
           </div>
         </div>
@@ -62,7 +71,7 @@ const PostDetail = ({ post }) => {
           remarkPlugins={[remarkGfm]}
           components={{
             code({ node, inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || '');
+              const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
                   style={materialDark}
@@ -70,7 +79,7 @@ const PostDetail = ({ post }) => {
                   PreTag="div"
                   {...props}
                 >
-                  {String(children).replace(/\n$/, '')}
+                  {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
               ) : (
                 <code className={className} {...props}>

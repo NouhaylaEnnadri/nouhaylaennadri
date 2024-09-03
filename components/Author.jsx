@@ -7,8 +7,8 @@ const Author = ({ author }) => (
       <Image
         unoptimized
         alt={author.name}
-        height={100}  // Remove "px" and use just the number
-        width={100}   // Remove "px" and use just the number
+        height={100} // Corrected: Use just the number
+        width={100} // Corrected: Use just the number
         className="align-middle rounded-full"
         src={author.photo.url}
       />

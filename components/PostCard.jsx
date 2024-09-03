@@ -1,5 +1,6 @@
 import { getPosts } from "@/services";
 import moment from "moment";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -31,10 +32,13 @@ const PostCard = () => {
           <div className="dark-glass-container p-6 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 border border-gray-700 cursor-pointer">
             {/* Featured Image */}
             <div className="relative mb-4">
-              <img
+              <Image
+                unoptimized
                 src={post.node.featuredImage.url}
                 alt={post.node.title}
                 className="w-full h-60 object-cover rounded-t-lg"
+                width={32} // Provide width as required
+                height={32} // Provide height as required
               />
             </div>
 
