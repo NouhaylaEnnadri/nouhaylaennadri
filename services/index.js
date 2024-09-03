@@ -152,7 +152,6 @@ export const submitComment = async (obj) => {
 
   return result.json();
 };
-
 export const getComments = async (slug) => {
   const query = gql`
     query GetComments($slug: String!) {

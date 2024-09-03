@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Author,
   Category,
@@ -7,9 +8,16 @@ import {
   PostWidget,
 } from "@/components";
 import { getPosts, getPostsDetails } from "@/services";
-import React from "react";
 
 const PostDetails = ({ post }) => {
+  const [newComment, setNewComment] = useState(null);
+
+  const handleNewComment = (comment) => {
+    setNewComment(comment);
+  };
+
+  const slug = post.slug; // Extract slug from the post object
+
   return (
     <>
       <div className="container mx-auto px-10 mb-8">
@@ -18,8 +26,8 @@ const PostDetails = ({ post }) => {
             {/* Main Post Content */}
             <PostDetail post={post} />
             <Author author={post.author} />
-            <CommentsForm slug={post.slug} />
-            <Comments />
+            <CommentsForm slug={slug} onNewComment={handleNewComment} />
+            <Comments slug={slug} newComment={newComment} />
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky top-8">
@@ -38,9 +46,8 @@ export default PostDetails;
 // Fetch data at build time
 export async function getStaticProps(context) {
   const slug = context.params.slug;
-  console.log(slug);
   const data = await getPostsDetails(slug);
-  console.log(data);
+
   return {
     props: { post: data },
   };
