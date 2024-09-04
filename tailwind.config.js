@@ -12,6 +12,16 @@ module.exports = {
         "move-left": "moveLeft 1s ease-in-out forwards",
         "cube-spin": "cubeSpin 3s infinite linear",
       },
+      extend: {
+        colors: {
+          "pastel-pink": "#FFB7B2",
+          "pastel-blue": "#AEC6CF",
+          "pastel-green": "#B4E7B8",
+          "pastel-yellow": "#FFFACD",
+          "pastel-purple": "#CBAACB",
+          "pastel-teal": "#A1E9E8",
+        },
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },
@@ -30,6 +40,6 @@ module.exports = {
   },
   plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
-    themes: [],
+    themes: ["dracula"],
   },
 };

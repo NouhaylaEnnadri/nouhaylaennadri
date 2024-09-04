@@ -4,10 +4,10 @@ import { Category, PostCard, PostWidget } from "@/components";
 export default function Home() {
   return (
     <>
-      <div className="border rounded-lg border-secondary mt-4 mb-8 mx-4 sm:mx-6">
+      <div className=" rounded-lg  mt-4 mb-8 mx-4 sm:mx-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Section */}
-          <div className="lg:col-span-2 col-span-1 border-r border-gray-300 lg:sticky lg:top-16">
+          <div className="border-r  lg:col-span-2 col-span-1  border-gray-300 lg:sticky lg:top-16">
             <div className="  m-2 rounded-lg p-4 lg:sticky lg:top-16 backdrop-blur-md ">
               <h2 className="text-lg hidden lg:block font-semibold border-b border-gray-200 pb-2 mb-4">
                 Topics
@@ -44,7 +44,7 @@ export default function Home() {
             </div>
 
             {/* Right Section */}
-            <div className="lg:w-2/5 p-4 border-l  flex flex-col">
+            <div className="lg:w-2/5 p-4   flex flex-col">
               {/* Sticky Search Bar */}
               <div className="sticky top-16  pb-6 rounded-lg">
                 <label className="input input-bordered p-6 input-secondary flex items-center gap-2">
@@ -64,7 +64,11 @@ export default function Home() {
                 </label>
               </div>
 
-              <div className="p-4 rounded-lg   flex-grow overflow-y-auto ">
+              <div className="p-4 bg-opacity-25 rounded-lg bg-secondary">
+  <PostWidget />
+</div>
+
+              <div className="p-4 bg-opacity-25 rounded-lg mt-12 bg-accent ">
                 <PostWidget />
               </div>
             </div>
