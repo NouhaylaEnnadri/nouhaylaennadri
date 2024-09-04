@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import DarkLight from "./DarkLight";
-import { getCategory } from "@/services"; // Import the function from the correct path
+import { getCategory } from "@/services";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navigation bar */}
-      <nav className="border border-secondary backdrop-blur-2xl sticky top-0 z-50 shadow-md mx-6 my-2 rounded-xl">
+      <nav className="border border-secondary backdrop-blur-md bg-white/30 dark:bg-gray-800/30 sticky top-0 z-50 shadow-lg mx-6 my-2 rounded-xl">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-16">
             <h1 className="text-2xl font-bold text-secondary">NOYL</h1>
