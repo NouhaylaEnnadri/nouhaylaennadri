@@ -1,16 +1,24 @@
-import { getPosts } from "@/services";
+import { getCategoryByPost, getPosts } from "@/services";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const PostCard = () => {
+const PostCard = ({ category }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const result = await getPosts();
+        let result;
+        if (category) {
+          // Fetch posts by category if category is defined
+          result = await getCategoryByPost(category);
+        } else {
+          // Fetch all posts if category is null
+          result = await getPosts();
+        }
+        console.log(result);
         setPosts(result);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -18,7 +26,7 @@ const PostCard = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [category]);
 
   return (
     <div className="space-y-8">
@@ -47,7 +55,7 @@ const PostCard = () => {
               {post.node.category.map((cat) => (
                 <span
                   key={cat.slug}
-                  className=" px-2.5 py-1 text-xs font-medium text-base-content bg-accent bg-opacity-15 rounded-md transition-colors duration-300 hover:bg-accent"
+                  className="px-2.5 py-1 text-xs font-medium text-base-content bg-accent bg-opacity-15 rounded-md transition-colors duration-300 hover:bg-accent"
                 >
                   {cat.name}
                 </span>

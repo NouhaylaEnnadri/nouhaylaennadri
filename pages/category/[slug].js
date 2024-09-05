@@ -1,34 +1,40 @@
-import { PostCard } from "@/components";
-import { getCategoryByPost } from "@/services";
+import { Category, PostCard, PostWidget } from "@/components";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const CategoryPage = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  // State to store the fetched category data
-  const [categoryData, setCategoryData] = useState(null);
-
-  useEffect(() => {
-    if (slug) {
-      console.log("Slug:", slug);
-
-      // Fetch category by post using the slug
-      getCategoryByPost(slug)
-        .then((data) => {
-          console.log("Fetched Category by Post:", data);
-          setCategoryData(data); // Store the fetched data in state
-        })
-        .catch((error) => {
-          console.error("Error fetching category by post:", error);
-        });
-    }
-  }, [slug]); // Add 'slug' as a dependency
-
   return (
     <div className="rounded-lg mb-8 p-12 sm:mx-4">
-      <PostCard category={slug} />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        {/* Left Section */}
+        <div className="lg:col-span-2 col-span-1 border-gray-300 lg:sticky lg:top-16">
+          <div className="rounded-lg p-2 lg:sticky lg:top-16 backdrop-blur-md">
+            <h2 className="text-base hidden lg:block font-semibold border-b border-accent pb-2 mb-2">
+              Topics
+            </h2>
+            <Category />
+          </div>
+        </div>
+
+        {/* Main Content and Right Section */}
+        <div className="lg:col-span-10 col-span-1 flex flex-col lg:flex-row gap-4">
+          {/* Main Posts Section */}
+          <div className="lg:w-3/5 p-2 sm:p-4 space-y-4">
+            {/* Post Cards */}
+            <PostCard category={slug} />
+          </div>
+
+          {/* Right Section */}
+          <div className="bg-base-100 lg:w-2/5 hidden lg:block flex-col ">
+            <div className="p-2 lg:sticky lg:top-16 rounded-lg mb-4">
+              <PostWidget />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
