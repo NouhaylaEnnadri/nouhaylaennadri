@@ -50,16 +50,16 @@ export default function Home() {
           </div>
 
           {/* Right Section */}
-          <div className="bg-base-100 lg:w-2/5  flex flex-col">
+          <div className="bg-base-100 lg:w-2/5 hidden lg:block flex-col ">
             {/* Sticky Search Bar */}
 
-            <div className="p-2 rounded-lg mb-4">
+            <div className="p-2 lg:sticky lg:top-16 rounded-lg mb-4">
               <PostWidget />
             </div>
 
-            <div className="p-2 bg-opacity-20 rounded-lg mt-4 bg-accent">
+            {/* <div className="p-2 bg-opacity-20 rounded-lg mt-4 bg-accent">
               <PostWidget />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
