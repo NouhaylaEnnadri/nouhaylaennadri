@@ -26,7 +26,7 @@ const PostWidget = ({ category, slug }) => {
 
   return (
     <div className=" rounded-lg ">
-      <h2 className=" font-semibold text-base-content mb-4 pb-2 border-b border-secondary ">
+      <h2 className=" font-semibold text-base-content mb-4 pb-2 border-b border-accent ">
         {slug ? "Related Posts" : "Recent Posts"}
       </h2>
       <ul className="list-none space-y-4">
@@ -34,7 +34,7 @@ const PostWidget = ({ category, slug }) => {
           <li key={post.node.slug}>
             <Link
               href={`/post/${post.node.slug}`}
-              className="block p-3 rounded-lg bg-secondary bg-opacity-30 hover:bg-secondary hover:bg-opacity-50 transition-transform transform hover:scale-105 hover:shadow-lg"
+              className="block p-3 rounded-lg bg-accent bg-opacity-30 hover:bg-accent hover:bg-opacity-50 transition-transform transform hover:scale-105 hover:shadow-lg"
             >
               <div className="flex flex-col">
                 {/* Post Title */}
@@ -48,7 +48,7 @@ const PostWidget = ({ category, slug }) => {
                 <div className="flex items-center text-xs text-gray-400 space-x-2">
                   {/* Display Category as a Tag */}
                   {post.node.category && post.node.category.length > 0 && (
-                    <span className="inline-block text-xs font-medium px-2 py-0.5 text-secondary  rounded">
+                    <span className="inline-block text-xs font-medium px-2 py-0.5 text-accent  rounded">
                       {post.node.category[0].name}
                     </span>
                   )}

@@ -13,3 +13,4 @@ export { default as DarkLight } from "./DarkLight";
 export { default as Hero } from "./Hero";
 export { default as SocialMedia } from "./SocialMedia";
 export { default as Preloader } from "./Preloader";
+export { default as CategoryPage } from "./CategoryPage";

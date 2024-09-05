@@ -29,7 +29,7 @@ const PostCard = () => {
           passHref
           className="block"
         >
-          <div className="dark-glass-container p-6 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 border border-gray-700 cursor-pointer">
+          <div className="dark-glass-container p-6 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 border border-accent border-opacity-30 cursor-pointer">
             {/* Featured Image */}
             <div className="relative mb-4">
               <Image
@@ -47,7 +47,7 @@ const PostCard = () => {
               {post.node.category.map((cat) => (
                 <span
                   key={cat.slug}
-                  className="bg-gray-800 text-teal-300 text-sm font-medium rounded-full px-3 py-1"
+                  className=" px-2.5 py-1 text-xs font-medium text-base-content bg-accent bg-opacity-15 rounded-md transition-colors duration-300 hover:bg-accent"
                 >
                   {cat.name}
                 </span>
@@ -57,34 +57,14 @@ const PostCard = () => {
             {/* Content */}
             <div>
               {/* Title */}
-              <h1 className="text-2xl font-semibold text-white mb-4 hover:text-teal-400 transition-colors duration-300">
+              <h1 className="text-2xl font-semibold text-base-content mb-4 hover:text-accent hover:text-opacity-30 transition-colors duration-300">
                 {post.node.title}
               </h1>
 
               {/* Excerpt styled like a quote */}
-              <blockquote className="border-l-4 border-teal-400 pl-4 italic text-gray-300 mb-6">
+              <blockquote className="border-l-4 border-accent pl-4 italic text-neutral mb-6">
                 {post.node.excerpt}
               </blockquote>
-
-              {/* Author and Date */}
-              <div className="flex items-center mb-4 text-gray-400 text-sm">
-                <div className="flex items-center">
-                  <Image
-                    unoptimized
-                    width={32} // Provide width as required
-                    height={32} // Provide height as required
-                    src={post.node.author.photo.url}
-                    alt={post.node.author.name}
-                    className="w-8 h-8 rounded-full object-cover mr-2"
-                  />
-                  <div className="flex flex-col">
-                    <p className="font-medium">{post.node.author.name}</p>
-                    <span>
-                      {moment(post.node.createdAt).format("MMM DD, YYYY")}
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </Link>

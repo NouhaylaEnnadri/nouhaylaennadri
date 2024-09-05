@@ -13,9 +13,7 @@ const SyntaxHighlighter = dynamic(() =>
 import materialDark from "react-syntax-highlighter/dist/cjs/styles/prism/material-dark";
 
 const PostDetail = ({ post }) => {
-  if (!post) {
-    return <div>Loading...</div>; // Handle the case where post data is not available
-  }
+  
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">

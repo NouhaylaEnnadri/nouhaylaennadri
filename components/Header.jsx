@@ -41,8 +41,8 @@ const Navbar = () => {
       <nav className="border border-white/10 rounded-lg mt-4 sm:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
-          <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-secondary">
-            <span className="text-secondary">N</span>OYL
+          <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-accent">
+            <span className="text-accent">N</span>OYL
           </h1>
 
           {/* Desktop Menu */}
@@ -102,19 +102,19 @@ const Navbar = () => {
           <div className="max-w-7xl mx-auto px-6 space-y-2">
             <Link
               href="#"
-              className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
+              className="block text-base-content hover:bg-accent hover:bg-opacity-30 hover:text-accent transition-colors duration-200 rounded-md px-3 py-2"
             >
               Home
             </Link>
             <Link
               href="#"
-              className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
+              className="block text-base-content hover:bg-accent hover:bg-opacity-30 hover:text-accent transition-colors duration-200 rounded-md px-3 py-2"
             >
               Reading List
             </Link>
             <button
               onClick={toggleCategories}
-              className="w-full text-left text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
+              className="w-full text-left text-base-content hover:bg-accent hover:bg-opacity-30 hover:text-accent transition-colors duration-200 rounded-md px-3 py-2"
             >
               Categories
             </button>
@@ -126,7 +126,7 @@ const Navbar = () => {
                       <Link
                         key={category.slug}
                         href={`/category/${category.slug}`}
-                        className={`border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
+                        className={`border-accent bg-accent bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
                       >
                         {category.name}
                       </Link>
@@ -154,7 +154,7 @@ const Navbar = () => {
                     <Link
                       key={category.slug}
                       href={`/category/${category.slug}`}
-                      className={`border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
+                      className={`border-accent bg-accent bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
                     >
                       {category.name}
                     </Link>
