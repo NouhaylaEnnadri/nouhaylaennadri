@@ -21,9 +21,12 @@ const PostWidget = ({ category, slug }) => {
      */
     const fetchPosts = async () => {
       try {
-        const result = slug
-          ? await getRelatedPosts(category, slug)
-          : await getRecentPosts();
+        let result;
+        if (slug) {
+          result = await getRelatedPosts(category, slug);
+        } else {
+          result = await getRecentPosts();
+        }
         setWidgetPosts(result);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -33,52 +36,47 @@ const PostWidget = ({ category, slug }) => {
     fetchPosts();
   }, [slug, category]); // Fetch posts when slug or category changes
 
-  const categoryStyles = [
-    "bg-blue-200 text-blue-800 border-blue-400",
-    "bg-gray-200 text-gray-800 border-gray-500",
-    "bg-red-200 text-red-800 border-red-400",
-    "bg-green-200 text-green-800 border-green-400",
-    "bg-yellow-200 text-yellow-800 border-yellow-300",
-    "bg-indigo-200 text-indigo-800 border-indigo-400",
-    "bg-purple-200 text-purple-800 border-purple-400",
-    "bg-pink-200 text-pink-800 border-pink-400",
-  ];
-
   return (
-    <div className="p-6 bg-white bg-opacity-20 backdrop-blur-lg rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-5 text-blue-500">
+    <div className="p-2 rounded-lg shadow-md">
+      {/* Recent or Related Posts Section */}
+      <h2 className="text-lg font-semibold text-base-content mb-3">
         {slug ? "Related Posts" : "Recent Posts"}
       </h2>
-      <ul className="space-y-4">
+      {/* List of posts */}
+      <ul className="list-none space-y-3 p-0">
         {widgetPosts.map((post) => (
           <li key={post.node.slug}>
             <Link
               href={`/post/${post.node.slug}`}
-              className="flex items-start p-4 bg-gray-800 bg-opacity-30 rounded-lg transition-transform transform hover:scale-105 hover:shadow-xl"
+              className="flex items-start space-x-3 p-3 rounded-lg bg-secondary bg-opacity-20 transition-transform transform hover:scale-105 hover:shadow-md"
             >
+              {/* Post Image */}
               <Image
-                width={60} // Adjust size as needed
-                height={60} // Adjust size as needed
+                width={60} // Adjust width as needed
+                height={45} // Adjust height as needed
                 unoptimized
                 src={post.node.featuredImage.url}
                 alt={post.node.title}
-                className="w-16 h-16 object-cover rounded-lg border border-gray-600"
+                className="w-16 h-12 object-cover rounded-md border border-gray-600"
               />
-              <div className="ml-4 flex-1">
-                <div className="text-white font-medium text-lg">
+              <div className="flex-1">
+                {/* Post Title */}
+                <h3 className="text-sm font-semibold text-white mb-1">
                   {post.node.title}
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mt-1">
+                </h3>
+                {/* Post Description */}
+                <p className="text-xs text-gray-300 mb-1">
+                  {post.node.excerpt}
+                </p>
+                <div className="flex items-center text-xs text-gray-500">
+                  {/* Display Category as a Tag */}
                   {post.node.category && post.node.category.length > 0 && (
-                    <span
-                      className={`inline-block ${categoryStyles[
-                        post.node.category[0].name.length % categoryStyles.length
-                      ]} px-3 py-1 font-medium rounded-lg border dark:bg-gray-700 dark:text-gray-400`}
-                    >
+                    <span className="inline-block text-xs font-medium px-2 py-0.5 bg-blue-600 text-white rounded">
                       {post.node.category[0].name}
                     </span>
                   )}
-                  <span className="mx-2">•</span>
+                  <span className="mx-1">•</span>
+                  {/* Post Date */}
                   <span>
                     {moment(post.node.createdAt).format("MMM DD, YYYY")}
                   </span>
@@ -88,14 +86,7 @@ const PostWidget = ({ category, slug }) => {
           </li>
         ))}
       </ul>
-      <div className="mt-5 text-center">
-        <Link
-          href="/posts"
-          className="text-blue-500 hover:underline font-semibold"
-        >
-          See More
-        </Link>
-      </div>
+      {/* Link to See More Posts */}
     </div>
   );
 };

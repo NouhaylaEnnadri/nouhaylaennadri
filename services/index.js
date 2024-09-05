@@ -51,6 +51,7 @@ export const getRecentPosts = async () => {
           node {
             title
             slug
+            excerpt
             createdAt
             featuredImage {
               url
