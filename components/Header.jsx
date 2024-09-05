@@ -3,6 +3,9 @@ import Link from "next/link";
 import DarkLight from "./DarkLight";
 import { getCategory } from "@/services";
 
+// Import the Orbitron font for a tech vibe
+import "@fontsource/orbitron";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
@@ -24,7 +27,7 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsOpen((prev) => !prev);
     if (!isOpen) {
-      setIsCategoriesOpen(false); // Close categories if menu is opened
+      setIsCategoriesOpen(false);
     }
   };
 
@@ -35,14 +38,15 @@ const Navbar = () => {
   return (
     <>
       {/* Navigation bar */}
-      <nav className="border border-white/10 rounded-lg mt-4 mx-4 sm:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
+      <nav className="border border-white/10 rounded-lg mt-4 sm:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
-          <h1 className="text-3xl font-bold text-primary font-[Dancing Script]">
-            NOYL
+          <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-secondary">
+            <span className="text-secondary">N</span>OYL
           </h1>
+
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4 items-center">
+          <div className="mx-6 hidden md:flex space-x-4 items-center">
             <Link
               href="#"
               className="text-base-content hover:text-primary transition-colors duration-200"
@@ -87,11 +91,11 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-            {/* DarkLight Component for Mobile */}
           </div>
         </div>
       </nav>
 
+      {/* Remaining components remain unchanged */}
       {/* Mobile Menu Content */}
       {isOpen && (
         <div className="md:hidden mx-4 rounded-2xl my-3 bg-base-300 backdrop-blur-lg py-6">

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/dancing-script": "^5.0.19",
+    "@fontsource/orbitron": "^5.0.20",
     "@tailwindcss/typography": "^0.5.15",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.0",

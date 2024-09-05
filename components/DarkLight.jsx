@@ -5,7 +5,7 @@ const DarkLight = () => {
     <div>
       <label className="swap swap-rotate p-1">
         {/* this hidden checkbox controls the state */}
-        <input type="checkbox" className="theme-controller" value="night" />
+        <input type="checkbox" className="theme-controller" value="emerald" />
 
         {/* sun icon */}
         <svg
