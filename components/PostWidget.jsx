@@ -33,7 +33,9 @@ const PostWidget = ({ category, slug }) => {
         {widgetPosts.map((post) => (
           <li key={post.node.slug}>
             <Link
-              href={`/post/${post.node.slug}`}
+              key={post.node.slug}
+              href={`/posts/${post.node.slug}`}
+              passHref
               className="block p-3 rounded-lg bg-accent bg-opacity-30 hover:bg-accent hover:bg-opacity-50 transition-transform transform hover:scale-105 hover:shadow-lg"
             >
               <div className="flex flex-col">
