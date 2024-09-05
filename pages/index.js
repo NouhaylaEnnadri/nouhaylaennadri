@@ -23,7 +23,7 @@ export default function Home() {
 
           <div className="lg:w-3/5 p-2 sm:p-4 space-y-4">
             {/* Search Bar for Smaller Screens */}
-            <div className="lg:hidden mb-2">
+            {/* <div className="lg:hidden mb-2">
               <label className="input input-bordered input-secondary flex items-center gap-1">
                 <input
                   type="text"
@@ -43,7 +43,7 @@ export default function Home() {
                   />
                 </svg>
               </label>
-            </div>
+            </div> */}
 
             {/* Post Cards */}
             <PostCard />

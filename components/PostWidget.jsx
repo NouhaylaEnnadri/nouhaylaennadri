@@ -2,23 +2,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import moment from "moment";
 import { getRecentPosts, getRelatedPosts } from "@/services";
-import Image from "next/image";
 
-/**
- * PostWidget Component
- * Displays a list of recent or related posts with clickable cards based on the slug.
- *
- * @param {string} [props.category] - Category to filter related posts (optional)
- * @param {string} [props.slug] - Slug of the current post to find related posts (optional)
- */
 const PostWidget = ({ category, slug }) => {
   const [widgetPosts, setWidgetPosts] = useState([]);
 
   useEffect(() => {
-    /**
-     * Fetch posts based on the provided category or slug.
-     * Sets the state with fetched posts.
-     */
     const fetchPosts = async () => {
       try {
         let result;
@@ -34,50 +22,38 @@ const PostWidget = ({ category, slug }) => {
     };
 
     fetchPosts();
-  }, [slug, category]); // Fetch posts when slug or category changes
+  }, [slug, category]);
 
   return (
-    <div className="p-2 rounded-lg shadow-md">
-      {/* Recent or Related Posts Section */}
-      <h2 className="text-lg font-semibold text-base-content mb-3">
+    <div className="p-4 rounded-lg ">
+      <h2 className="text-xl font-semibold text-base-content mb-4">
         {slug ? "Related Posts" : "Recent Posts"}
       </h2>
-      {/* List of posts */}
-      <ul className="list-none space-y-3 p-0">
+      <ul className="list-none space-y-4">
         {widgetPosts.map((post) => (
           <li key={post.node.slug}>
             <Link
               href={`/post/${post.node.slug}`}
-              className="flex items-start space-x-3 p-3 rounded-lg bg-secondary bg-opacity-20 transition-transform transform hover:scale-105 hover:shadow-md"
+              className="block p-3 rounded-lg bg-secondary bg-opacity-30 hover:bg-secondary hover:bg-opacity-50 transition-transform transform hover:scale-105 hover:shadow-lg"
             >
-              {/* Post Image */}
-              <Image
-                width={60} // Adjust width as needed
-                height={45} // Adjust height as needed
-                unoptimized
-                src={post.node.featuredImage.url}
-                alt={post.node.title}
-                className="w-16 h-12 object-cover rounded-md border border-gray-600"
-              />
-              <div className="flex-1">
+              <div className="flex flex-col">
                 {/* Post Title */}
-                <h3 className="text-sm font-semibold text-white mb-1">
+                <h3 className="text-md font-semibold text-base-content mb-1">
                   {post.node.title}
                 </h3>
                 {/* Post Description */}
-                <p className="text-xs text-gray-300 mb-1">
-                  {post.node.excerpt}
+                <p className="text-sm text-gray-400 mb-2">
+                  {post.node.shortDescription}
                 </p>
-                <div className="flex items-center text-xs text-gray-500">
+                <div className="flex items-center text-xs text-gray-400 space-x-2">
                   {/* Display Category as a Tag */}
                   {post.node.category && post.node.category.length > 0 && (
-                    <span className="inline-block text-xs font-medium px-2 py-0.5 bg-blue-600 text-white rounded">
+                    <span className="inline-block text-xs font-medium px-2 py-0.5 text-secondary  rounded">
                       {post.node.category[0].name}
                     </span>
                   )}
-                  <span className="mx-1">•</span>
                   {/* Post Date */}
-                  <span>
+                  <span className="ml-2 text-gray-500">
                     {moment(post.node.createdAt).format("MMM DD, YYYY")}
                   </span>
                 </div>
@@ -86,7 +62,6 @@ const PostWidget = ({ category, slug }) => {
           </li>
         ))}
       </ul>
-      {/* Link to See More Posts */}
     </div>
   );
 };
