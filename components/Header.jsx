@@ -41,9 +41,11 @@ const Navbar = () => {
       <nav className="border border-white/10 rounded-lg mt-4 sm:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
-          <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-accent">
-            <span className="text-accent">N</span>OYL
-          </h1>
+          <Link href="/" passHref>
+  <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-accent cursor-pointer">
+    <span className="text-accent">N</span>OYL
+  </h1>
+</Link>
 
           {/* Desktop Menu */}
           <div className="mx-6 hidden md:flex space-x-4 items-center">
