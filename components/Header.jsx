@@ -38,26 +38,9 @@ const Navbar = () => {
       <nav className="border border-white/10 rounded-lg mt-4 mx-4 sm:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 64 64"
-              height="32"
-              width="32"
-              className="inline-block"
-            >
-              <path
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="8"
-                stroke="url(#b)"
-                d="M 10 4 V 60 H 20 V 22 L 40 60 H 50 V 4 H 40 V 42 L 20 4 Z"
-              />
-            </svg>
-            <span className="text-xl font-semibold">NOYL</span>
-          </div>
-
+          <h1 className="text-3xl font-bold text-primary font-[Dancing Script]">
+            NOYL
+          </h1>
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4 items-center">
             <Link
@@ -78,11 +61,13 @@ const Navbar = () => {
             >
               Categories
             </button>
-            <DarkLight className="w-6 h-6" />
+            <DarkLight className="w-2 h-2" />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
+            <DarkLight className="w-3 h-3 ml-2" />
+
             <button
               onClick={toggleMobileMenu}
               className="text-base-content focus:outline-none"
@@ -102,6 +87,7 @@ const Navbar = () => {
                 />
               </svg>
             </button>
+            {/* DarkLight Component for Mobile */}
           </div>
         </div>
       </nav>
@@ -132,17 +118,15 @@ const Navbar = () => {
               <div className="bg-base bg-opacity-70 mt-2 p-4 rounded-lg backdrop-blur-md">
                 <nav className="flex flex-wrap gap-2">
                   {postCategories.length > 0 ? (
-                    postCategories.map((category, index) => {
-                      return (
-                        <Link
-                          key={category.slug}
-                          href={`/category/${category.slug}`}
-                          className={` border-secondary bg-secondary bg-opacity-30 text-base-content  inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300  `}
-                        >
-                          {category.name}
-                        </Link>
-                      );
-                    })
+                    postCategories.map((category) => (
+                      <Link
+                        key={category.slug}
+                        href={`/category/${category.slug}`}
+                        className={`border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
+                      >
+                        {category.name}
+                      </Link>
+                    ))
                   ) : (
                     <p className="text-center text-gray-400">
                       No Categories Available
@@ -162,18 +146,15 @@ const Navbar = () => {
             <div className="bg-white/10 dark:bg-gray-900/10 p-6 rounded-lg shadow-lg backdrop-blur-md border border-white/10">
               <nav className="flex flex-wrap gap-4">
                 {postCategories.length > 0 ? (
-                  postCategories.map((category, index) => {
-                  
-                    return (
-                      <Link
-                        key={category.slug}
-                        href={`/category/${category.slug}`}
-                        className={` border-secondary bg-secondary bg-opacity-30 text-base-content  inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300  `}
-                        >
-                        {category.name}
-                      </Link>
-                    );
-                  })
+                  postCategories.map((category) => (
+                    <Link
+                      key={category.slug}
+                      href={`/category/${category.slug}`}
+                      className={`border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
+                    >
+                      {category.name}
+                    </Link>
+                  ))
                 ) : (
                   <p className="text-center text-gray-400">
                     No Categories Available

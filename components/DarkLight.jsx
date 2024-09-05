@@ -1,21 +1,15 @@
-/**
- * The DarkLight component in this JavaScript React code renders a toggle switch with sun and moon
- * icons for switching between light and dark themes.
- * @returns The `DarkLight` component is being returned, which contains a label element with hidden
- * checkbox input and two SVG icons (sun and moon).
- */
 import React from "react";
 
 const DarkLight = () => {
   return (
     <div>
-      <label className="swap swap-rotate  p-2">
+      <label className="swap swap-rotate p-1">
         {/* this hidden checkbox controls the state */}
         <input type="checkbox" className="theme-controller" value="night" />
 
         {/* sun icon */}
         <svg
-          className="swap-off fill-current w-8 h-10"
+          className="swap-off fill-current w-6 h-6"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -24,7 +18,7 @@ const DarkLight = () => {
 
         {/* moon icon */}
         <svg
-          className="swap-on fill-current w-8 h-10"
+          className="swap-on fill-current w-6 h-6"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >

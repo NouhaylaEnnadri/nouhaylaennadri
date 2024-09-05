@@ -3,12 +3,12 @@ import { Category, PostCard, PostWidget } from "@/components";
 
 export default function Home() {
   return (
-    <div className="rounded-lg mt-6 mb-8 mx-2 sm:mx-4">
+    <div className="rounded-lg  mb-8 p-12 sm:mx-4">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Left Section */}
 
         <div className="border-r lg:col-span-2 col-span-1 border-gray-300 lg:sticky lg:top-16">
-          <div className="m-2 rounded-lg p-2 lg:sticky lg:top-16 backdrop-blur-md">
+          <div className=" rounded-lg p-2 lg:sticky lg:top-16 backdrop-blur-md">
             <h2 className="text-base hidden lg:block font-semibold border-b border-secondary pb-2 mb-2">
               Topics
             </h2>
