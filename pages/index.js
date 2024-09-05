@@ -7,7 +7,7 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Left Section */}
 
-        <div className="border-r lg:col-span-2 col-span-1 border-gray-300 lg:sticky lg:top-16">
+        <div className=" lg:col-span-2 col-span-1 border-gray-300 lg:sticky lg:top-16">
           <div className=" rounded-lg p-2 lg:sticky lg:top-16 backdrop-blur-md">
             <h2 className="text-base hidden lg:block font-semibold border-b border-secondary pb-2 mb-2">
               Topics
