@@ -77,7 +77,7 @@ const Preloader = () => {
           viewBox="0 0 64 64"
           height="32"
           width="32"
-          className="inline-block text-primary"
+          className="inline-block text-secondary"
         >
           <path
             strokeLinejoin="round"
