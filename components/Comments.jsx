@@ -1,19 +1,21 @@
-// Comments.js
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
-import parse from 'html-react-parser';
-import { getComments } from '../services';
+import React, { useEffect, useState } from "react";
+import moment from "moment";
+import parse from "html-react-parser";
+import { getComments } from "../services";
 
-const Comments = ({ slug, newComment }) => {
+const Comments = ({ slug, newComment, onCommentCountChange }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     if (slug) {
       getComments(slug).then((result) => {
         setComments(result);
+        if (onCommentCountChange) {
+          onCommentCountChange(result.length); // Pass the comment count to the parent
+        }
       });
     }
-  }, [slug]);
+  }, [slug, newComment]);
 
   useEffect(() => {
     if (newComment) {
@@ -31,8 +33,8 @@ const Comments = ({ slug, newComment }) => {
           {comments.map((comment, index) => (
             <div key={index} className="border-b border-gray-100 mb-4 pb-4">
               <p className="mb-4">
-                <span className="font-semibold">{comment.name}</span> on{' '}
-                {moment(comment.createdAt).format('MMM DD, YYYY')}
+                <span className="font-semibold">{comment.name}</span> on{" "}
+                {moment(comment.createdAt).format("MMM DD, YYYY")}
               </p>
               <p className="whitespace-pre-line text-gray-600 w-full">
                 {parse(comment.comment)}
