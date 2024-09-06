@@ -17,7 +17,7 @@ const PostDetails = ({ post }) => {
   };
 
   const slug = post.slug; // Extract slug from the post object
-
+  const category = post.category;
   return (
     <>
       <div className="container mx-auto px-10 mb-8">
@@ -31,7 +31,7 @@ const PostDetails = ({ post }) => {
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky top-8">
-              <PostWidget slug={post.slug} />
+              <PostWidget slug={post.slug} category={category} />
               <Category />
             </div>
           </div>
