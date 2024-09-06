@@ -76,11 +76,7 @@ export const getRelatedPosts = async (categories, slug) => {
       posts(
         where: {
           slug_not: $slug
-          AND: {
-            category_some: {
-              slug_in: $categories
-            }
-          }
+          AND: { category_some: { slug_in: $categories } }
         }
         first: 3
       ) {
@@ -215,7 +211,7 @@ export const getCategoryByPost = async (categorySlug) => {
 
   // Execute the query with the provided categorySlug
   const result = await request(graphqlAPI, query, { slug: categorySlug });
-  
+
   console.log("GraphQL Response:", result); // Log the response for debugging
 
   return result.postsConnection.edges;

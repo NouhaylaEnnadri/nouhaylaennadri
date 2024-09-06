@@ -14,7 +14,7 @@ const PostWidget = ({ category, slug }) => {
       try {
         let result;
         if (slug) {
-          const categorySlugs = category.map(cat => cat.slug);
+          const categorySlugs = category.map((cat) => cat.slug);
           result = await getRelatedPosts(categorySlugs, slug);
           console.log("Related Posts Result:", result);
         } else {
@@ -24,7 +24,7 @@ const PostWidget = ({ category, slug }) => {
 
         // Check if result is an array and map it accordingly
         if (result && result.length) {
-          setWidgetPosts(result.map(edge => edge.node || edge));
+          setWidgetPosts(result.map((edge) => edge.node || edge));
         } else {
           console.error("Unexpected result format:", result);
         }
@@ -67,7 +67,8 @@ const PostWidget = ({ category, slug }) => {
                   </p>
                   <div className="flex flex-wrap gap-1 items-center text-xs text-gray-400">
                     {/* Display Categories as Tags */}
-                    {post.category && post.category.length > 0 && (
+                    {post.category &&
+                      post.category.length > 0 &&
                       post.category.map((cat, idx) => (
                         <span
                           key={idx}
@@ -75,8 +76,7 @@ const PostWidget = ({ category, slug }) => {
                         >
                           {cat.name}
                         </span>
-                      ))
-                    )}
+                      ))}
                     {/* Post Date */}
                     <span className="ml-2 text-gray-500">
                       {moment(post.createdAt).format("MMM DD, YYYY")}

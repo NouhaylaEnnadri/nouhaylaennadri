@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {
   Author,
-  Category,
   Comments,
   CommentsForm,
   PostDetail,
   PostWidget,
 } from "@/components";
 import { getPosts, getPostsDetails } from "@/services";
+import Category from "@/components/Category"; // Import the Category component
 
 const PostDetails = ({ post }) => {
   const [newComment, setNewComment] = useState(null);
@@ -16,28 +16,39 @@ const PostDetails = ({ post }) => {
     setNewComment(comment);
   };
 
-  const slug = post.slug; // Extract slug from the post object
+  const slug = post.slug;
   const category = post.category;
+
   return (
-    <>
-      <div className="container mx-auto px-10 mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="col-span-1 lg:col-span-8">
-            {/* Main Post Content */}
-            <PostDetail post={post} />
-            <Author author={post.author} />
+    <div className="container mx-auto px-4 lg:px-8 py-12">
+      <div className="max-w-6xl mx-auto">
+        {/* Categories */}
+        <Category />
+
+        {/* Main Post Content */}
+        <div className="mb-12 w-full shadow-lg rounded-lg p-8 ">
+          <PostDetail post={post} />
+        </div>
+
+        {/* Flex Container for Comments and Related Posts */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Comments Section */}
+          <div className="flex-1  p-6 rounded-lg shadow-md">
             <CommentsForm slug={slug} onNewComment={handleNewComment} />
             <Comments slug={slug} newComment={newComment} />
           </div>
-          <div className="col-span-1 lg:col-span-4">
-            <div className="relative lg:sticky top-8">
+
+          {/* Related Posts Section */}
+          <div className="w-full lg:w-1/3">
+            <h3 className="text-2xl font-bold mb-6">Related Posts</h3>
+            <div className="flex flex-col gap-4">
+              {/* Render related posts */}
               <PostWidget slug={post.slug} category={category} />
-              <Category />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

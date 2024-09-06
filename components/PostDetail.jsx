@@ -13,39 +13,40 @@ const SyntaxHighlighter = dynamic(() =>
 import materialDark from "react-syntax-highlighter/dist/cjs/styles/prism/material-dark";
 
 const PostDetail = ({ post }) => {
-  
-
   return (
-    <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-      <div className="relative overflow-hidden shadow-md mb-6">
+    <div className="shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+      {/* Featured Image */}
+      <div className="relative overflow-hidden shadow-md mb-6 rounded-t-lg">
         <Image
-          width={800} // Adjust width as needed
-          height={400} // Adjust height as needed
+          width={800} 
+          height={400} 
           unoptimized
           src={post.featuredImage.url}
-          alt={post.title} // Use the post title for alt text
+          alt={post.title}
           className="object-cover h-full w-full rounded-t-lg lg:rounded-lg"
         />
       </div>
+
+      {/* Post Meta and Author Info */}
       <div className="px-4 lg:px-0">
         <div className="flex items-center mb-8">
-          <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
+          {/* Author Information */}
+          <div className="flex items-center">
             <Image
               unoptimized
               alt={post.author.name}
-              width={32}
-              height={32}
-              className="align-middle rounded-full"
+              width={40}
+              height={40}
+              className="rounded-full mr-4"
               src={post.author.photo.url}
             />
-            <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-              {post.author.name}
-            </p>
+            <p className="text-gray-700 font-medium text-lg">{post.author.name}</p>
           </div>
-          <div className="font-medium text-gray-700">
+          {/* Post Date */}
+          <div className="ml-auto text-gray-500 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 inline mr-2 text-pink-500"
+              className="h-5 w-5 mr-1 text-blue-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -57,12 +58,13 @@ const PostDetail = ({ post }) => {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span className="align-middle">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
-            </span>
+            <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
           </div>
         </div>
-        <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
+
+        {/* Post Title */}
+        <h1 className="mb-8 text-4xl font-bold text-gray-800">{post.title}</h1>
+
         {/* Markdown Content with Syntax Highlighting */}
         <ReactMarkdown
           className="prose lg:prose-xl"
