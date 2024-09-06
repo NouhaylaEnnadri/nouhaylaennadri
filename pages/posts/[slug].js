@@ -17,7 +17,8 @@ const PostDetails = ({ post, initialCommentCount }) => {
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href)
+    navigator.clipboard
+      .writeText(window.location.href)
       .then(() => {
         alert("Link copied to clipboard!");
       })
@@ -92,11 +93,11 @@ export async function getStaticProps(context) {
   const slug = context.params.slug;
   const data = await getPostsDetails(slug);
   const comments = await getComments(slug);
-  
+
   return {
-    props: { 
+    props: {
       post: data,
-      initialCommentCount: comments.length
+      initialCommentCount: comments.length,
     },
   };
 }
