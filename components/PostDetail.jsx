@@ -22,12 +22,6 @@ const calculateReadingTime = (text) => {
 };
 
 const PostDetail = ({ post }) => {
-  // Access category (assuming it's an array and you want to display the first one)
-  const category =
-    post.category && post.category.length > 0
-      ? post.category[0].name
-      : "Uncategorized";
-
   // Calculate reading time
   const readingTime = calculateReadingTime(post.content);
 
@@ -38,16 +32,23 @@ const PostDetail = ({ post }) => {
         {post.title}
       </h1>
 
-      {/* Category and Date */}
+      {/* Categories and Date */}
       <div className="mb-6">
-        {/* Category */}
+        {/* Categories */}
         <div className="mx-6 sm:mx-6 lg:mx-24 text-xs mb-2">
-          <Link
-            href={`/category/${post.category[0].id}`}
-            className="inline-block px-2 py-0.5 text-xs font-medium text-base-content bg-accent bg-opacity-20 border border-accent rounded-md transition-colors duration-300 hover:bg-accent"
-          >
-            {category}
-          </Link>
+          {post.category && post.category.length > 0 ? (
+            post.category.map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/category/${cat.id}`}
+                className="inline-block px-2 py-0.5 text-xs font-medium text-base-content bg-accent bg-opacity-20 border border-accent rounded-md transition-colors duration-300 hover:bg-accent mr-2 mb-2"
+              >
+                {cat.name}
+              </Link>
+            ))
+          ) : (
+            <span>Uncategorized</span>
+          )}
         </div>
         {/* Post Date and Reading Time */}
         <div className="flex mx-6 sm:mx-6 lg:mx-24 text-gray-500 text-sm gap-4">
