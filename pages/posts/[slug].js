@@ -57,15 +57,15 @@ const PostDetails = ({ post }) => {
         <div className="flex flex-col items-center mt-12">
           {/* Action Buttons */}
           <div className="flex gap-4 mb-8">
-            <button 
-              className="flex items-center px-4 py-2 text-gray-500 hover:text-gray-700 disabled:opacity-50" 
+            <button
+              className="flex items-center px-4 py-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
               disabled
             >
               <FaShareAlt className="mr-2" />
               Share
             </button>
-            <button 
-              className="flex items-center px-4 py-2 text-gray-500 hover:text-gray-700" 
+            <button
+              className="flex items-center px-4 py-2 text-gray-500 hover:text-gray-700"
               onClick={toggleComments}
             >
               <FaCommentAlt className="mr-2" />
