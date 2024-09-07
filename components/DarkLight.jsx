@@ -1,5 +1,11 @@
-import React from "react";
-
+/**
+ * `DarkLight` Component
+ *
+ * A React component that provides a toggle switch to switch between dark and light themes.
+ * The component uses SVG icons to represent the light and dark modes and a hidden checkbox to control the theme state.
+ *
+ * @returns {JSX.Element} The rendered `DarkLight` component.
+ */
 const DarkLight = () => {
   return (
     <div>

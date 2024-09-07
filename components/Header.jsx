@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import DarkLight from "./DarkLight";
 import { getCategory } from "@/services";
 
-// Import the Orbitron font for a tech vibe
 import "@fontsource/orbitron";
 
 const Navbar = () => {
@@ -24,30 +23,27 @@ const Navbar = () => {
     fetchCategories();
   }, []);
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
     if (!isOpen) {
       setIsCategoriesOpen(false);
     }
-  };
+  }, [isOpen]);
 
-  const toggleCategories = () => {
+  const toggleCategories = useCallback(() => {
     setIsCategoriesOpen((prev) => !prev);
-  };
+  }, []);
 
   return (
     <>
-      {/* Navigation bar */}
       <nav className="border border-white/10 rounded-lg mt-4 mx-4 sm:mx-6 md:mx-8 lg:mx-12 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
-          {/* Logo */}
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           <Link href="/" passHref>
             <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-secondary cursor-pointer">
               <span className="text-secondary">N</span>OYL
             </h1>
           </Link>
 
-          {/* Desktop Menu */}
           <div className="mx-6 hidden md:flex space-x-4 items-center">
             <Link
               href="/soon/comingsoon"
@@ -72,10 +68,8 @@ const Navbar = () => {
             <DarkLight className="w-2 h-2" />
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <DarkLight className="w-3 h-3 ml-2" />
-
             <button
               onClick={toggleMobileMenu}
               className="text-base-content focus:outline-none"
@@ -99,8 +93,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Remaining components remain unchanged */}
-      {/* Mobile Menu Content */}
       {isOpen && (
         <div className="md:hidden mx-4 rounded-2xl my-3 bg-base-300 backdrop-blur-lg py-6">
           <div className="max-w-7xl mx-auto px-6 space-y-2">
@@ -132,14 +124,14 @@ const Navbar = () => {
                       <Link
                         key={category.slug}
                         href={`/category/${category.slug}`}
-                        className={`border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
+                        className="border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300"
                       >
                         {category.name}
                       </Link>
                     ))
                   ) : (
                     <p className="text-center text-gray-400">
-                      NoTopics Available
+                      No Topics Available
                     </p>
                   )}
                 </nav>
@@ -149,7 +141,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Overlay below header (for desktop) */}
       {isCategoriesOpen && !isOpen && (
         <div className="relative z-40 py-6 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-6">
@@ -160,14 +151,14 @@ const Navbar = () => {
                     <Link
                       key={category.slug}
                       href={`/category/${category.slug}`}
-                      className={`border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300`}
+                      className="border-secondary bg-secondary bg-opacity-30 text-base-content inline-block px-2.5 py-0.5 text-xs font-medium rounded-md border transition-colors duration-300"
                     >
                       {category.name}
                     </Link>
                   ))
                 ) : (
                   <p className="text-center text-gray-400">
-                    NoTopics Available
+                    No Topics Available
                   </p>
                 )}
               </nav>

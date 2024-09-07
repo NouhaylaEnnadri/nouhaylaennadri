@@ -1,26 +1,21 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import moment from "moment";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Link from "next/link";
-
-// Dynamic import of SyntaxHighlighter for client-side only
-const SyntaxHighlighter = dynamic(() =>
-  import("react-syntax-highlighter").then((mod) => mod.Prism)
-);
-
-import materialDark from "react-syntax-highlighter/dist/cjs/styles/prism/material-dark";
-
-const calculateReadingTime = (text) => {
-  const wordsPerMinute = 200; // Average reading speed
-  const words = text.split(/\s/).length;
-  const minutes = words / wordsPerMinute;
-  const roundedMinutes = Math.ceil(minutes);
-  return roundedMinutes;
-};
-
+/**
+ * `PostDetail` Component
+ *
+ * A React component that displays the detailed view of a blog post. It includes the post's title, categories, date, reading time, featured image, and content formatted with Markdown. Syntax highlighting is provided for code blocks within the content.
+ *
+ * @param {Object} props - The properties object.
+ * @param {Object} props.post - The blog post data.
+ * @param {string} props.post.title - The title of the post.
+ * @param {Array<Object>} props.post.category - An array of category objects associated with the post.
+ * @param {string} props.post.category.id - The unique identifier of the category.
+ * @param {string} props.post.category.name - The name of the category.
+ * @param {string} props.post.createdAt - The creation date of the post in ISO format.
+ * @param {Object} props.post.featuredImage - The featured image of the post.
+ * @param {string} props.post.featuredImage.url - The URL of the featured image.
+ * @param {string} props.post.content - The Markdown content of the post.
+ *
+ * @returns {JSX.Element} The rendered `PostDetail` component displaying the post details.
+ */
 const PostDetail = ({ post }) => {
   // Calculate reading time
   const readingTime = calculateReadingTime(post.content);

@@ -1,22 +1,35 @@
-import React, { useEffect, useState } from "react";
-import moment from "moment";
-import parse from "html-react-parser";
-import { getComments } from "../services";
-
+/**
+ * `Comments` Component
+ *
+ * A React component that displays a list of comments for a specific post.
+ * It fetches comments based on the provided slug, and updates the list 
+ * when a new comment is added.
+ *
+ * @param {string} props.slug - The slug of the post for which comments are being fetched.
+ * @param {Object} [props.newComment] - The newly added comment to be included in the list.
+ * @param {Function} [props.onCommentCountChange] - Callback function to update the parent with the new comment count.
+ */
 const Comments = ({ slug, newComment, onCommentCountChange }) => {
+  // State to store the list of comments
   const [comments, setComments] = useState([]);
 
+  // Effect to fetch comments when the component mounts or the slug changes
   useEffect(() => {
     if (slug) {
-      getComments(slug).then((result) => {
-        setComments(result);
-        if (onCommentCountChange) {
-          onCommentCountChange(result.length); // Pass the comment count to the parent
-        }
-      });
+      getComments(slug)
+        .then((result) => {
+          setComments(result);
+          if (onCommentCountChange) {
+            onCommentCountChange(result.length); // Pass the comment count to the parent
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching comments:", error);
+        });
     }
-  }, [slug, newComment, onCommentCountChange]); // Include onCommentCountChange here
+  }, [slug, newComment, onCommentCountChange]); // Dependencies
 
+  // Effect to add the new comment to the list
   useEffect(() => {
     if (newComment) {
       setComments((prevComments) => [newComment, ...prevComments]); // Add new comment to the beginning of the list

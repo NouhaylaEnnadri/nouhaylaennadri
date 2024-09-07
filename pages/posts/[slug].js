@@ -1,8 +1,14 @@
-import React, { useState } from "react";
-import { Comments, CommentsForm, PostDetail, PostWidget } from "@/components";
-import { getPosts, getPostsDetails, getComments } from "@/services";
-import { FaLink, FaRegCommentDots } from "react-icons/fa";
-
+/**
+ * `PostDetails` Component
+ *
+ * A Next.js page component that displays the details of a single post, along with related posts, comments, and comment functionality. It also provides options to copy the post's URL and toggle the comments section. The component manages local state for new comments, comment visibility, and comment count, and includes functionality for copying the link to the clipboard with a popup notification.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.post - The post object containing details like slug, category, and content.
+ * @param {number} props.initialCommentCount - The initial number of comments for the post.
+ *
+ * @returns {JSX.Element} The rendered `PostDetails` component, including the post content, interaction buttons, related posts or comments section, and a popup notification for copying the post link.
+ */
 const PostDetails = ({ post, initialCommentCount }) => {
   const [newComment, setNewComment] = useState(null);
   const [showComments, setShowComments] = useState(false);
@@ -10,15 +16,26 @@ const PostDetails = ({ post, initialCommentCount }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hasRelatedPosts, setHasRelatedPosts] = useState(true);
 
+  /**
+   * Handles adding a new comment and updates the comment count.
+   *
+   * @param {Object} comment - The new comment object.
+   */
   const handleNewComment = (comment) => {
     setNewComment(comment);
     setCommentCount((prevCount) => prevCount + 1); // Update comment count
   };
 
+  /**
+   * Toggles the visibility of the comments section.
+   */
   const handleToggleComments = () => {
     setShowComments((prev) => !prev);
   };
 
+  /**
+   * Copies the current post URL to the clipboard and displays a popup notification.
+   */
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(window.location.href)
@@ -109,6 +126,14 @@ const PostDetails = ({ post, initialCommentCount }) => {
   );
 };
 
+/**
+ * Fetches the static props for the `PostDetails` component, including post details and comments.
+ *
+ * @param {Object} context - The context object containing query parameters.
+ * @param {Object} context.params - The query parameters, including the post slug.
+ *
+ * @returns {Promise<Object>} The static props including the post details and initial comment count.
+ */
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   const data = await getPostsDetails(slug);
@@ -122,6 +147,11 @@ export async function getStaticProps(context) {
   };
 }
 
+/**
+ * Generates the static paths for the `PostDetails` component based on available posts.
+ *
+ * @returns {Promise<Object>} The static paths including the post slugs for dynamic routing.
+ */
 export async function getStaticPaths() {
   const posts = await getPosts();
   return {
