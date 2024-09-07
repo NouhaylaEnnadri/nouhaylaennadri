@@ -14,12 +14,11 @@ const PostWidget = ({ category, slug }) => {
       setLoading(true);
       try {
         let result;
-        // If there's a slug, try fetching related posts
+       
         if (slug) {
           const categorySlugs = category.map((cat) => cat.slug);
           result = await getRelatedPosts(categorySlugs, slug);
 
-          // If related posts are not found, fetch recent posts
           if (!result || result.length === 0) {
             setShowRelated(false); // No related posts, fallback to recent posts
             result = await getRecentPosts();

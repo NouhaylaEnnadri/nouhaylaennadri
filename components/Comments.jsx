@@ -15,7 +15,7 @@ const Comments = ({ slug, newComment, onCommentCountChange }) => {
         }
       });
     }
-  }, [slug, newComment]);
+  }, [slug, newComment, onCommentCountChange]); // Include onCommentCountChange here
 
   useEffect(() => {
     if (newComment) {

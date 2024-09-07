@@ -50,13 +50,15 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="mx-6 hidden md:flex space-x-4 items-center">
             <Link
-              href="#"
+              href="/soon/comingsoon"
+              passHref
               className="text-base-content hover:text-secondary transition-colors duration-200"
             >
               Notes
             </Link>
             <Link
-              href="#"
+              href="/soon/comingsoon"
+              passHref
               className="text-base-content hover:text-secondary transition-colors duration-200"
             >
               Reading List
