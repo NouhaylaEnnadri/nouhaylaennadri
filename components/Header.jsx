@@ -38,8 +38,8 @@ const Navbar = () => {
   return (
     <>
       {/* Navigation bar */}
-      <nav className="border border-white/10 rounded-lg mt-4 sm:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
+      <nav className="border border-white/10 rounded-lg mt-4 mx-4 sm:mx-6 lg:mx-6 backdrop-blur-md bg-white/10 dark:bg-gray-900/10 shadow-xl sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" passHref>
             <h1 className="mx-6 text-2xl font-bold font-[Orbitron] text-transparent bg-clip-text bg-secondary cursor-pointer">
@@ -105,13 +105,15 @@ const Navbar = () => {
         <div className="md:hidden mx-4 rounded-2xl my-3 bg-base-300 backdrop-blur-lg py-6">
           <div className="max-w-7xl mx-auto px-6 space-y-2">
             <Link
-              href="#"
+              href="/soon/comingsoon"
+              passHref
               className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
             >
               Notes
             </Link>
             <Link
-              href="#"
+              href="/soon/comingsoon"
+              passHref
               className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
             >
               Reading List
