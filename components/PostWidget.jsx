@@ -18,7 +18,7 @@ const PostWidget = ({ category, slug }) => {
         if (slug) {
           const categorySlugs = category.map((cat) => cat.slug);
           result = await getRelatedPosts(categorySlugs, slug);
-          
+
           // If related posts are not found, fetch recent posts
           if (!result || result.length === 0) {
             setShowRelated(false); // No related posts, fallback to recent posts
@@ -49,7 +49,7 @@ const PostWidget = ({ category, slug }) => {
 
   return (
     <div className="rounded-lg">
-      <h2 className="font-semibold text-base-content mb-4 pb-2 border-b border-accent">
+      <h2 className="font-semibold text-base-content mb-4 pb-2 border-b border-secondary">
         {showRelated ? "Related Posts" : "Recent Posts"}
       </h2>
       <ul className="list-none space-y-4">
@@ -59,7 +59,7 @@ const PostWidget = ({ category, slug }) => {
               <Link
                 href={`/posts/${post.slug}`}
                 passHref
-                className="block p-3 rounded-lg bg-accent bg-opacity-30 hover:bg-accent hover:bg-opacity-50 transition-transform transform hover:scale-105 hover:shadow-lg"
+                className="block p-3 rounded-lg bg-secondary bg-opacity-10 hover:bg-secondary hover:bg-opacity-50 transition-transform transform hover:scale-105 hover:shadow-lg"
               >
                 <div className="flex flex-col">
                   {/* Post Title */}
@@ -71,15 +71,15 @@ const PostWidget = ({ category, slug }) => {
                     {post.shortDescription}
                   </p>
                   <div className="flex flex-wrap gap-1 items-center text-xs text-gray-400">
-                    {/* Display Categories as Tags */}
+                    {/* Display Categories as Tags with #, slightly rounded border, and no colors */}
                     {post.category &&
                       post.category.length > 0 &&
                       post.category.map((cat, idx) => (
                         <span
                           key={idx}
-                          className="inline-block text-xs font-medium px-2 py-0.5 text-accent rounded"
+                          className="inline-block text-xs font-medium px-2 py-0.5 border border-gray-400 rounded-md"
                         >
-                          {cat.name}
+                          #{cat.name}
                         </span>
                       ))}
                     {/* Post Date */}

@@ -45,16 +45,16 @@ const PostDetails = ({ post, initialCommentCount }) => {
         </div>
 
         {/* Interaction Navbar at the Bottom */}
-        <div className="mx-6 sm:mx-12 lg:mx-48 border flex justify-between items-center p-4 rounded-lg mb-8  shadow-md">
+        <div className=" mx-6 sm:mx-12 lg:mx-48 border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30  mb-8 shadow-md">
           <button
-            className="flex items-center text-secondary text-opacity-70 hover:text-secondary transition duration-300"
+            className="flex items-center  hover:text-secondary transition duration-300"
             onClick={handleToggleComments}
           >
-            <FaRegCommentDots size={24} className="mr-2" />
-            <span className="hidden sm:inline">Comment ({commentCount})</span>
+            <FaRegCommentDots size={24} className=" mr-2" />
+            <span className=" hidden sm:inline">Comment ({commentCount})</span>
           </button>
           <button
-            className="flex items-center text-secondary text-opacity-70 hover:text-secondary transition duration-300"
+            className="flex items-center  hover:text-secondary transition duration-300"
             onClick={handleCopyLink}
           >
             <FaLink size={24} className="mr-2" />
@@ -74,7 +74,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
         )}
 
         {/* Flex Container for Related Posts and Comments Form */}
-        <div className="relative mx-6 sm:mx-12 lg:mx-48">
+        <div className="relative mx-6 sm:mx-12 lg:mx-44 lg:p-12">
           {/* Related Posts or Recent Posts Section */}
           {!showComments && (
             <div className="w-full">
@@ -89,20 +89,22 @@ const PostDetails = ({ post, initialCommentCount }) => {
           )}
 
           {/* Conditional Rendering for Comments Form and Comments Section */}
-          {showComments && (
-            <div className="transition-opacity duration-300 ease-in-out w-full">
-              <div className="w-full  shadow-md rounded-lg p-6 mb-8">
-                <CommentsForm slug={slug} onNewComment={handleNewComment} />
-              </div>
-              <div className="w-full  shadow-md rounded-lg p-6">
-                <Comments
-                  slug={slug}
-                  newComment={newComment}
-                  onCommentCountChange={setCommentCount}
-                />
-              </div>
+          <div
+            className={`transition-all duration-700 ease-in-out overflow-hidden ${
+              showComments ? "max-h-[999px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="w-full shadow-md rounded-lg p-6 mb-8">
+              <CommentsForm slug={slug} onNewComment={handleNewComment} />
             </div>
-          )}
+            <div className="w-full shadow-md rounded-lg p-6">
+              <Comments
+                slug={slug}
+                newComment={newComment}
+                onCommentCountChange={setCommentCount}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
