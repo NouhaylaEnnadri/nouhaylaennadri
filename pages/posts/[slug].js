@@ -74,7 +74,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
         )}
 
         {/* Flex Container for Related Posts and Comments Form */}
-        <div className="relative mx-6 sm:mx-12 lg:mx-44 lg:p-12">
+        <div className="relative mx-2 sm:mx-4 lg:mx-44 lg:p-12">
           {/* Related Posts or Recent Posts Section */}
           {!showComments && (
             <div className="w-full">
@@ -90,12 +90,12 @@ const PostDetails = ({ post, initialCommentCount }) => {
 
           {/* Conditional Rendering for Comments Form and Comments Section */}
           {showComments && (
-            <div className="w-full shadow-md rounded-lg p-6 mb-8">
+            <div className="w-full shadow-md rounded-lg p-2 sm:p-6 mb-4">
               <CommentsForm slug={slug} onNewComment={handleNewComment} />
             </div>
           )}
           {showComments && (
-            <div className="w-full shadow-md rounded-lg p-6">
+            <div className="w-full shadow-md rounded-lg p-2 sm:p-6">
               <Comments
                 slug={slug}
                 newComment={newComment}
