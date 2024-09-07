@@ -51,7 +51,7 @@ const PostCard = ({ category }) => {
               {post.node.category.map((cat) => (
                 <span
                   key={cat.slug}
-                  className="px-3 py-1 text-xs font-medium text-primary bg-accent bg-opacity-10 rounded-md transition-colors duration-300 hover:bg-accent hover:text-neutral-content"
+                  className="inline-block px-3 py-1 text-xs font-medium border border-secondary border-opacity-30 rounded-lg transition-all duration-300 ease-in-out hover:bg-secondary hover:bg-opacity-10"
                 >
                   {cat.name}
                 </span>
@@ -61,12 +61,12 @@ const PostCard = ({ category }) => {
             {/* Content */}
             <div>
               {/* Title */}
-              <h1 className="text-2xl font-semibold text-neutral-content mb-4 hover:text-accent hover:text-opacity-70 transition-colors duration-300">
+              <h1 className="text-2xl font-semibold text-base-content mb-4 hover:text-secondary hover:text-opacity-70 transition-colors duration-300">
                 {post.node.title}
               </h1>
 
               {/* Excerpt styled like a quote */}
-              <blockquote className="border-l-4 border-accent pl-4 italic text-neutral mb-6">
+              <blockquote className="border-l-4 border-secondary pl-4 italic text-base-content mb-6">
                 {post.node.excerpt}
               </blockquote>
             </div>
