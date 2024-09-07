@@ -7,9 +7,11 @@ const PostDetails = ({ post, initialCommentCount }) => {
   const [newComment, setNewComment] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const [commentCount, setCommentCount] = useState(initialCommentCount);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleNewComment = (comment) => {
     setNewComment(comment);
+    setCommentCount((prevCount) => prevCount + 1); // Update comment count
   };
 
   const handleToggleComments = () => {
@@ -20,7 +22,10 @@ const PostDetails = ({ post, initialCommentCount }) => {
     navigator.clipboard
       .writeText(window.location.href)
       .then(() => {
-        alert("Link copied to clipboard!");
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 2000); // Popup duration
       })
       .catch((err) => {
         console.error("Failed to copy the link: ", err);
@@ -39,7 +44,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
         </div>
 
         {/* Interaction Navbar at the Bottom */}
-        <div className="mx-6 sm:mx-12 lg:mx-48 border flex justify-between items-center p-4 rounded-lg mb-8">
+        <div className="mx-6 sm:mx-12 lg:mx-48 border flex justify-between items-center p-4 rounded-lg mb-8 bg-white shadow-md">
           <button
             className="flex items-center text-secondary text-opacity-70 hover:text-secondary transition duration-300"
             onClick={handleToggleComments}
@@ -55,6 +60,15 @@ const PostDetails = ({ post, initialCommentCount }) => {
             <span className="hidden sm:inline">Copy Link</span>
           </button>
         </div>
+
+        {/* Popup for Copy Link */}
+        {showPopup && (
+          <div className="fixed p-6  inset-0 flex items-center justify-center z-50">
+            <div className="bg-secondary bg-opacity-30 text-white p-4 rounded-lg shadow-lg">
+              <p className="text-sm font-medium">Ready to be shared!</p>
+            </div>
+          </div>
+        )}
 
         {/* Flex Container for Related Posts and Comments Form */}
         <div className="relative">
