@@ -40,6 +40,6 @@ module.exports = {
   },
   plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
-    themes: ["night", "emerald"],
+    themes: ["night", "winter"],
   },
 };
