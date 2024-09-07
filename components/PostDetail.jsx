@@ -41,7 +41,7 @@ const PostDetail = ({ post }) => {
               <Link
                 key={cat.id}
                 href={`/category/${cat.id}`}
-                className="inline-block px-2 py-0.5 text-xs font-medium text-base-content bg-accent bg-opacity-20 border border-accent rounded-md transition-colors duration-300 hover:bg-accent mr-2 mb-2"
+                className="inline-block px-2 py-0.5 text-xs font-medium text-base-content bg-secondary bg-opacity-20 border border-secondary rounded-md transition-colors duration-300 hover:bg-secondary mr-2 mb-2"
               >
                 {cat.name}
               </Link>

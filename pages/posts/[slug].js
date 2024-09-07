@@ -45,16 +45,16 @@ const PostDetails = ({ post, initialCommentCount }) => {
         </div>
 
         {/* Interaction Navbar at the Bottom */}
-        <div className=" mx-6 sm:mx-12 lg:mx-48 border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30  mb-8 shadow-md">
+        <div className="mx-6 sm:mx-12 lg:mx-48 border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30 mb-8 shadow-md">
           <button
-            className="flex items-center  hover:text-secondary transition duration-300"
+            className="flex items-center hover:text-secondary transition duration-300"
             onClick={handleToggleComments}
           >
-            <FaRegCommentDots size={24} className=" mr-2" />
-            <span className=" hidden sm:inline">Comment ({commentCount})</span>
+            <FaRegCommentDots size={24} className="mr-2" />
+            <span className="hidden sm:inline">Comment ({commentCount})</span>
           </button>
           <button
-            className="flex items-center  hover:text-secondary transition duration-300"
+            className="flex items-center hover:text-secondary transition duration-300"
             onClick={handleCopyLink}
           >
             <FaLink size={24} className="mr-2" />
@@ -89,14 +89,12 @@ const PostDetails = ({ post, initialCommentCount }) => {
           )}
 
           {/* Conditional Rendering for Comments Form and Comments Section */}
-          <div
-            className={`transition-all duration-700 ease-in-out overflow-hidden ${
-              showComments ? "max-h-[999px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-          >
+          {showComments && (
             <div className="w-full shadow-md rounded-lg p-6 mb-8">
               <CommentsForm slug={slug} onNewComment={handleNewComment} />
             </div>
+          )}
+          {showComments && (
             <div className="w-full shadow-md rounded-lg p-6">
               <Comments
                 slug={slug}
@@ -104,7 +102,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
                 onCommentCountChange={setCommentCount}
               />
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
