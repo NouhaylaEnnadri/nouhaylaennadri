@@ -1,3 +1,4 @@
+
 export { default as PostCard } from "./PostCard";
 export { default as PostDetail } from "./PostDetail";
 export { default as Layout } from "./Layout";
@@ -14,3 +15,4 @@ export { default as Hero } from "./Hero";
 export { default as SocialMedia } from "./SocialMedia";
 export { default as Preloader } from "./Preloader";
 export { default as CategoryPage } from "./CategoryPage";
+export { default as ComingSoon } from "./ComingSoon";
