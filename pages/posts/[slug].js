@@ -8,6 +8,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
   const [showComments, setShowComments] = useState(false);
   const [commentCount, setCommentCount] = useState(initialCommentCount);
   const [showPopup, setShowPopup] = useState(false);
+  const [hasRelatedPosts, setHasRelatedPosts] = useState(true);
 
   const handleNewComment = (comment) => {
     setNewComment(comment);
@@ -44,7 +45,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
         </div>
 
         {/* Interaction Navbar at the Bottom */}
-        <div className="mx-6 sm:mx-12 lg:mx-48 border flex justify-between items-center p-4 rounded-lg mb-8 bg-white shadow-md">
+        <div className="mx-6 sm:mx-12 lg:mx-48 border flex justify-between items-center p-4 rounded-lg mb-8  shadow-md">
           <button
             className="flex items-center text-secondary text-opacity-70 hover:text-secondary transition duration-300"
             onClick={handleToggleComments}
@@ -63,21 +64,26 @@ const PostDetails = ({ post, initialCommentCount }) => {
 
         {/* Popup for Copy Link */}
         {showPopup && (
-          <div className="fixed p-6  inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-secondary bg-opacity-30 text-white p-4 rounded-lg shadow-lg">
-              <p className="text-sm font-medium">Ready to be shared!</p>
+              <p className="text-sm font-medium">
+                Link copied! Feel free to share it.
+              </p>
             </div>
           </div>
         )}
 
         {/* Flex Container for Related Posts and Comments Form */}
-        <div className="relative">
-          {/* Related Posts Section */}
+        <div className="relative mx-6 sm:mx-12 lg:mx-48">
+          {/* Related Posts or Recent Posts Section */}
           {!showComments && (
             <div className="w-full">
-              <h3 className="text-2xl font-bold mb-6">Related Posts</h3>
               <div className="flex flex-col gap-4">
-                <PostWidget slug={post.slug} category={category} />
+                <PostWidget
+                  slug={slug}
+                  category={category}
+                  setHasRelatedPosts={setHasRelatedPosts}
+                />
               </div>
             </div>
           )}
@@ -85,10 +91,10 @@ const PostDetails = ({ post, initialCommentCount }) => {
           {/* Conditional Rendering for Comments Form and Comments Section */}
           {showComments && (
             <div className="transition-opacity duration-300 ease-in-out w-full">
-              <div className="w-full bg-white shadow-md rounded-lg p-6 mb-8">
+              <div className="w-full  shadow-md rounded-lg p-6 mb-8">
                 <CommentsForm slug={slug} onNewComment={handleNewComment} />
               </div>
-              <div className="w-full bg-white shadow-md rounded-lg p-6">
+              <div className="w-full  shadow-md rounded-lg p-6">
                 <Comments
                   slug={slug}
                   newComment={newComment}

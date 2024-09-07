@@ -4,29 +4,34 @@ import moment from "moment";
 import { getRecentPosts, getRelatedPosts } from "@/services";
 
 const PostWidget = ({ category, slug }) => {
-  const [widgetPosts, setWidgetPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showRelated, setShowRelated] = useState(true); // Tracks if we should show related posts
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
         let result;
+        // If there's a slug, try fetching related posts
         if (slug) {
           const categorySlugs = category.map((cat) => cat.slug);
           result = await getRelatedPosts(categorySlugs, slug);
-          console.log("Related Posts Result:", result);
+          
+          // If related posts are not found, fetch recent posts
+          if (!result || result.length === 0) {
+            setShowRelated(false); // No related posts, fallback to recent posts
+            result = await getRecentPosts();
+          }
         } else {
+          // If there's no slug, fetch recent posts directly
           result = await getRecentPosts();
-          console.log("Recent Posts Result:", result);
+          setShowRelated(false);
         }
 
-        // Check if result is an array and map it accordingly
         if (result && result.length) {
-          setWidgetPosts(result.map((edge) => edge.node || edge));
-        } else {
-          console.error("Unexpected result format:", result);
+          setPosts(result.map((edge) => edge.node || edge));
         }
       } catch (error) {
         setError(error);
@@ -45,11 +50,11 @@ const PostWidget = ({ category, slug }) => {
   return (
     <div className="rounded-lg">
       <h2 className="font-semibold text-base-content mb-4 pb-2 border-b border-accent">
-        {slug ? "Related Posts" : "Recent Posts"}
+        {showRelated ? "Related Posts" : "Recent Posts"}
       </h2>
       <ul className="list-none space-y-4">
-        {widgetPosts.length > 0 ? (
-          widgetPosts.map((post, index) => (
+        {posts.length > 0 ? (
+          posts.map((post, index) => (
             <li key={post.slug || index}>
               <Link
                 href={`/posts/${post.slug}`}
