@@ -1,5 +1,4 @@
 import { getCategoryByPost, getPosts } from "@/services";
-import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -12,13 +11,10 @@ const PostCard = ({ category }) => {
       try {
         let result;
         if (category) {
-          // Fetch posts by category if category is defined
           result = await getCategoryByPost(category);
         } else {
-          // Fetch all posts if category is null
           result = await getPosts();
         }
-        console.log(result);
         setPosts(result);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -29,7 +25,7 @@ const PostCard = ({ category }) => {
   }, [category]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {posts.map((post) => (
         <Link
           key={post.node.slug}
@@ -37,7 +33,7 @@ const PostCard = ({ category }) => {
           passHref
           className="block"
         >
-          <div className="dark-glass-container p-6 shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer relative">
+          <div className="p-4 border border-neutral-200 dark:border-neutral-700 bg-opacity-10 rounded-lg transition-transform transform hover:scale-105 hover:bg-opacity-20 cursor-pointer">
             {/* Featured Image */}
             <div className="relative mb-4">
               <Image
@@ -45,8 +41,8 @@ const PostCard = ({ category }) => {
                 src={post.node.featuredImage.url}
                 alt={post.node.title}
                 className="w-full h-60 object-cover rounded-t-lg"
-                width={32} // Provide width as required
-                height={32} // Provide height as required
+                width={600}
+                height={400}
               />
             </div>
 
@@ -55,7 +51,7 @@ const PostCard = ({ category }) => {
               {post.node.category.map((cat) => (
                 <span
                   key={cat.slug}
-                  className="px-2.5 py-1 text-xs font-medium text-base-content bg-secondary bg-opacity-15 rounded-md transition-colors duration-300 hover:bg-secondary"
+                  className="px-3 py-1 text-xs font-medium text-primary bg-accent bg-opacity-10 rounded-md transition-colors duration-300 hover:bg-accent hover:text-neutral-content"
                 >
                   {cat.name}
                 </span>
@@ -65,18 +61,15 @@ const PostCard = ({ category }) => {
             {/* Content */}
             <div>
               {/* Title */}
-              <h1 className="text-2xl font-semibold text-base-content mb-4 hover:text-secondary hover:text-opacity-30 transition-colors duration-300">
+              <h1 className="text-2xl font-semibold text-neutral-content mb-4 hover:text-accent hover:text-opacity-70 transition-colors duration-300">
                 {post.node.title}
               </h1>
 
               {/* Excerpt styled like a quote */}
-              <blockquote className="border-l-4 border-secondary pl-4 italic text-neutral mb-6">
+              <blockquote className="border-l-4 border-accent pl-4 italic text-neutral mb-6">
                 {post.node.excerpt}
               </blockquote>
             </div>
-
-            {/* Custom Top-Left Corner Border */}
-            <div className="absolute top-0 left-0 border-t-4 border-l-4 border-opacity-15 border-accent rounded-tl-lg w-6 h-6"></div>
           </div>
         </Link>
       ))}
