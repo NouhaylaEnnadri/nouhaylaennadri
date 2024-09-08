@@ -1,17 +1,7 @@
-/**
- * `CommentsForm` Component
- *
- * A React component that provides a form for users to submit comments on a post.
- * It handles user input, validation, and manages local storage for form data.
- *
- * @param {Object} props - The properties object.
- * @param {string} props.slug - The slug of the post to associate with the comment.
- * @param {Function} props.onNewComment - Callback function to notify the parent component of a new comment.
- *
- * @returns {JSX.Element} The rendered `CommentsForm` component.
- */
+import React, { useState, useEffect } from "react";
+import { submitComment } from "../services";
+
 const CommentsForm = ({ slug, onNewComment }) => {
-  // State to manage form data and UI states
   const [error, setError] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({
@@ -21,7 +11,6 @@ const CommentsForm = ({ slug, onNewComment }) => {
     storeData: false,
   });
 
-  // Effect to initialize form data from local storage when the component mounts
   useEffect(() => {
     if (typeof window !== "undefined") {
       const initialFormData = {
@@ -35,7 +24,6 @@ const CommentsForm = ({ slug, onNewComment }) => {
     }
   }, []);
 
-  // Handler for input field changes
   const onInputChange = (e) => {
     const { target } = e;
     if (target.type === "checkbox") {
@@ -51,12 +39,10 @@ const CommentsForm = ({ slug, onNewComment }) => {
     }
   };
 
-  // Handler for form submission
   const handlePostSubmission = () => {
     setError(false);
     const { name, email, comment, storeData } = formData;
 
-    // Validate input fields
     if (!name || !email || !comment) {
       setError(true);
       return;
@@ -64,7 +50,6 @@ const CommentsForm = ({ slug, onNewComment }) => {
 
     const commentObj = { name, email, comment, slug };
 
-    // Manage local storage based on checkbox value
     if (storeData) {
       localStorage.setItem("name", name);
       localStorage.setItem("email", email);
@@ -73,13 +58,11 @@ const CommentsForm = ({ slug, onNewComment }) => {
       localStorage.removeItem("email");
     }
 
-    // Submit the comment
     submitComment(commentObj).then((res) => {
       if (res.createComment) {
-        // Notify parent component with the new comment
+        // Immediately display the comment
         onNewComment(commentObj);
 
-        // Reset form data and show success message
         setFormData({
           name: storeData ? name : "",
           email: storeData ? email : "",

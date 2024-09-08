@@ -1,16 +1,3 @@
-/**
- * `PostCard` Component
- *
- * A React component that displays a list of blog posts as cards. Each card includes a featured image, tags, title, and excerpt.
- * The component fetches posts based on the provided category or retrieves all posts if no category is specified.
- *
- * @param {Object} props - The properties object.
- * @param {string} [props.category] - The category to filter posts by. If not provided, all posts are fetched.
- *
- * @returns {JSX.Element} The rendered `PostCard` component displaying a list of posts.
- */
-
-
 import { getCategoryByPost, getPosts } from "@/services";
 import Image from "next/image";
 import Link from "next/link";

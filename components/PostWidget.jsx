@@ -1,16 +1,3 @@
-/**
- * `PostWidget` Component
- *
- * A React component that displays a list of either related posts or recent posts. It dynamically fetches the posts based on the provided category and slug, and displays them with titles, descriptions, categories, and publication dates. If there are no related posts, it falls back to recent posts.
- *
- * @param {Object} props - The properties object.
- * @param {Array<Object>} props.category - An array of category objects for fetching related posts.
- * @param {string} props.category.slug - The slug of the category.
- * @param {string} [props.slug] - The slug of the current post to find related posts.
- *
- * @returns {JSX.Element} The rendered `PostWidget` component displaying a list of posts.
- */
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import moment from "moment";
@@ -27,7 +14,7 @@ const PostWidget = ({ category, slug }) => {
       setLoading(true);
       try {
         let result;
-       
+
         if (slug) {
           const categorySlugs = category.map((cat) => cat.slug);
           result = await getRelatedPosts(categorySlugs, slug);
