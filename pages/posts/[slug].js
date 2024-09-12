@@ -45,7 +45,7 @@ const PostDetails = ({ post, initialCommentCount }) => {
         </div>
 
         {/* Interaction Navbar at the Bottom */}
-        <div className="mx-6 sm:mx-12 lg:mx-48 border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30 mb-8 shadow-md">
+        <div className="mx-6 sm:mx-12  border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30 mb-8 shadow-md">
           <button
             className="flex items-center hover:text-secondary transition duration-300"
             onClick={handleToggleComments}
@@ -74,37 +74,36 @@ const PostDetails = ({ post, initialCommentCount }) => {
         )}
 
         {/* Flex Container for Related Posts and Comments Form */}
-        <div className="relative mx-2 sm:mx-4 lg:mx-44 lg:p-12">
-  {/* Related Posts or Recent Posts Section */}
-  {!showComments && (
-    <div className="w-full">
-      <div className="flex flex-col gap-4">
-        <PostWidget
-          slug={slug}
-          category={category}
-          setHasRelatedPosts={setHasRelatedPosts}
-        />
-      </div>
-    </div>
-  )}
+        <div className="relative mx-2 sm:mx-4  lg:p-12">
+          {/* Related Posts or Recent Posts Section */}
+          {!showComments && (
+            <div className="w-full">
+              <div className="flex flex-col gap-4">
+                <PostWidget
+                  slug={slug}
+                  category={category}
+                  setHasRelatedPosts={setHasRelatedPosts}
+                />
+              </div>
+            </div>
+          )}
 
-  {/* Conditional Rendering for Comments Form and Comments Section */}
-  {showComments && (
-    <div className="w-full shadow-md rounded-lg p-2 sm:p-6 mb-4">
-      <CommentsForm slug={slug} onNewComment={handleNewComment} />
-    </div>
-  )}
-  {showComments && (
-    <div className="w-full shadow-md rounded-lg p-2 sm:p-6">
-      <Comments
-        slug={slug}
-        newComment={newComment}
-        onCommentCountChange={setCommentCount}
-      />
-    </div>
-  )}
-</div>
-
+          {/* Conditional Rendering for Comments Form and Comments Section */}
+          {showComments && (
+            <div className="w-full shadow-md rounded-lg p-2 sm:p-6 mb-4">
+              <CommentsForm slug={slug} onNewComment={handleNewComment} />
+            </div>
+          )}
+          {showComments && (
+            <div className="w-full shadow-md rounded-lg p-2 sm:p-6">
+              <Comments
+                slug={slug}
+                newComment={newComment}
+                onCommentCountChange={setCommentCount}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

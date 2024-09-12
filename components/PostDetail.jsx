@@ -26,7 +26,7 @@ const PostDetail = ({ post }) => {
   const readingTime = calculateReadingTime(post.content);
 
   return (
-    <div className="pb-12 mb-8 mx-6 sm:mx-6 lg:mx-28 px-0 sm:px-0 lg:px-4">
+    <div className="pb-12 mb-8 mx-6 sm:mx-6  px-0 sm:px-0 lg:px-4">
       {/* Post Title */}
       <h1 className="mb-8 mx-6 sm:mx-6 lg:mx-24 text-4xl font-bold text-base-content">
         {post.title}
