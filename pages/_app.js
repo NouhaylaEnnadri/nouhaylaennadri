@@ -16,8 +16,10 @@ function MyApp({ Component, pageProps }) {
 
   // 🌐 Track total website visit once
   useEffect(() => {
-    fetch("/api/views/total", { method: "POST" });
-  }, []);
+    if (router.pathname === "/") {
+      fetch("/api/views/analytics", { method: "POST" });
+    }
+  }, [router.pathname]);
 
   if (loading) {
     return <Preloader />;
