@@ -9,7 +9,6 @@ const PostDetails = ({ post, initialCommentCount }) => {
   const [commentCount, setCommentCount] = useState(initialCommentCount);
   const [showPopup, setShowPopup] = useState(false);
   const [hasRelatedPosts, setHasRelatedPosts] = useState(true);
-  const [views, setViews] = useState(0);
 
   const slug = post.slug;
   const category = post.category;
@@ -17,15 +16,10 @@ const PostDetails = ({ post, initialCommentCount }) => {
   useEffect(() => {
     if (!slug) return;
 
-    // Increment view count for this post
+    // 🔐 Track post view silently
     fetch(`/api/views/${slug}`, {
       method: "POST",
     });
-
-    // Fetch the view count
-    fetch(`/api/views/${slug}`)
-      .then((res) => res.json())
-      .then((data) => setViews(data.views));
   }, [slug]);
 
   const handleNewComment = (comment) => {
@@ -42,28 +36,21 @@ const PostDetails = ({ post, initialCommentCount }) => {
       .writeText(window.location.href)
       .then(() => {
         setShowPopup(true);
-        setTimeout(() => {
-          setShowPopup(false);
-        }, 2000);
+        setTimeout(() => setShowPopup(false), 2000);
       })
-      .catch((err) => {
-        console.error("Failed to copy the link: ", err);
-      });
+      .catch((err) => console.error("Failed to copy the link: ", err));
   };
 
   return (
     <div className="container mx-auto px-4 lg:px-8 py-12">
       <div className="max-w-6xl mx-auto">
         {/* Main Post Content */}
-        <p className="text-sm text-gray-500 mt-2">{views} views</p>
-
         <div className="mb-12">
           <PostDetail post={post} />
-          <p className="text-sm text-gray-500 mt-2">{views} views</p>
         </div>
 
-        {/* Interaction Navbar at the Bottom */}
-        <div className="mx-6 sm:mx-12  border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30 mb-8 shadow-md">
+        {/* Interaction Navbar */}
+        <div className="mx-6 sm:mx-12 border-t flex justify-between items-center p-4 border-b border-secondary border-opacity-30 mb-8 shadow-md">
           <button
             className="flex items-center hover:text-secondary transition duration-300"
             onClick={handleToggleComments}
@@ -80,19 +67,17 @@ const PostDetails = ({ post, initialCommentCount }) => {
           </button>
         </div>
 
-        {/* Popup for Copy Link */}
+        {/* Copy Link Popup */}
         {showPopup && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-secondary bg-opacity-30 text-white p-4 rounded-lg shadow-lg">
-              <p className="text-sm font-medium">
-                Link copied! Feel free to share it.
-              </p>
+              <p className="text-sm font-medium">Link copied! Feel free to share it.</p>
             </div>
           </div>
         )}
 
-        {/* Flex Container for Related Posts and Comments Form */}
-        <div className="relative mx-2 sm:mx-4  lg:p-12">
+        {/* Related Posts or Comments */}
+        <div className="relative mx-2 sm:mx-4 lg:p-12">
           {!showComments && (
             <div className="w-full">
               <div className="flex flex-col gap-4">
