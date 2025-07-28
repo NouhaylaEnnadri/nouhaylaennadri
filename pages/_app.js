@@ -1,40 +1,32 @@
 import React, { useState, useEffect } from "react";
-import "../styles/globals.scss"; // Global styles
-import { Layout, Preloader } from "../components"; // Components
+import { useRouter } from "next/router"; // ✅ Import hook
+import "../styles/globals.scss";
+import { Layout, Preloader } from "../components";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
+  const router = useRouter(); // ✅ Initialize inside component
 
-  // ⏱ Preloader logic
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // 🌐 Track total website visit once
+  // Optional: use router for conditionally triggering tracking
   useEffect(() => {
-    if (router.pathname === "/") {
-      fetch("/api/views/analytics", { method: "POST" });
+    if (router && router.pathname === "/") {
+      fetch("/api/views/total", { method: "POST" });
     }
-  }, [router.pathname]);
+  }, [router]);
 
-  if (loading) {
-    return <Preloader />;
-  }
+  if (loading) return <Preloader />;
 
   return (
     <Layout>
       <Head>
         <title>Noyl</title>
-        <link
-          rel="icon"
-          href={`data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <text x="2" y="20" font-size="12" font-family="Arial" fill="black">NOYL</text>
-</svg>`}
-        />
+        {/* ... */}
       </Head>
       <Component {...pageProps} />
     </Layout>
