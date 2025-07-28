@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Comments, CommentsForm, PostDetail, PostWidget } from "@/components";
 import { getPosts, getPostsDetails, getComments } from "@/services";
 import { FaLink, FaRegCommentDots } from "react-icons/fa";
@@ -9,10 +9,28 @@ const PostDetails = ({ post, initialCommentCount }) => {
   const [commentCount, setCommentCount] = useState(initialCommentCount);
   const [showPopup, setShowPopup] = useState(false);
   const [hasRelatedPosts, setHasRelatedPosts] = useState(true);
+  const [views, setViews] = useState(0);
+
+  const slug = post.slug;
+  const category = post.category;
+
+  useEffect(() => {
+    if (!slug) return;
+
+    // Increment view count for this post
+    fetch(`/api/views/${slug}`, {
+      method: "POST",
+    });
+
+    // Fetch the view count
+    fetch(`/api/views/${slug}`)
+      .then((res) => res.json())
+      .then((data) => setViews(data.views));
+  }, [slug]);
 
   const handleNewComment = (comment) => {
     setNewComment(comment);
-    setCommentCount((prevCount) => prevCount + 1); // Update comment count
+    setCommentCount((prevCount) => prevCount + 1);
   };
 
   const handleToggleComments = () => {
@@ -26,22 +44,22 @@ const PostDetails = ({ post, initialCommentCount }) => {
         setShowPopup(true);
         setTimeout(() => {
           setShowPopup(false);
-        }, 2000); // Popup duration
+        }, 2000);
       })
       .catch((err) => {
         console.error("Failed to copy the link: ", err);
       });
   };
 
-  const slug = post.slug;
-  const category = post.category;
-
   return (
     <div className="container mx-auto px-4 lg:px-8 py-12">
       <div className="max-w-6xl mx-auto">
         {/* Main Post Content */}
+        <p className="text-sm text-gray-500 mt-2">{views} views</p>
+
         <div className="mb-12">
           <PostDetail post={post} />
+          <p className="text-sm text-gray-500 mt-2">{views} views</p>
         </div>
 
         {/* Interaction Navbar at the Bottom */}
@@ -75,7 +93,6 @@ const PostDetails = ({ post, initialCommentCount }) => {
 
         {/* Flex Container for Related Posts and Comments Form */}
         <div className="relative mx-2 sm:mx-4  lg:p-12">
-          {/* Related Posts or Recent Posts Section */}
           {!showComments && (
             <div className="w-full">
               <div className="flex flex-col gap-4">
@@ -88,7 +105,6 @@ const PostDetails = ({ post, initialCommentCount }) => {
             </div>
           )}
 
-          {/* Conditional Rendering for Comments Form and Comments Section */}
           {showComments && (
             <div className="w-full shadow-md rounded-lg p-2 sm:p-6 mb-4">
               <CommentsForm slug={slug} onNewComment={handleNewComment} />
