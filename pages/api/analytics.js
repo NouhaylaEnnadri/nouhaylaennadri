@@ -2,10 +2,12 @@ const HYGRAPH_API_URL = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 const HYGRAPH_TOKEN = process.env.HYGRAPH_TOKEN;
 
 export default async function handler(req, res) {
+  const { slug } = req.query;
+
   if (req.method === "POST") {
     const query = `
       query {
-        analytics(where: { id: "SOME_STATIC_ID" }) {
+        totalVisit(where: { id: "cmdnqotgk6ss07ugpo3kkko2" }) {
           totalVisits
         }
       }
@@ -21,17 +23,17 @@ export default async function handler(req, res) {
     });
 
     const result = await fetchCurrent.json();
-    const current = result.data?.analytics?.totalVisits || 0;
+    const current = result.data?.totalVisit?.totalVisits || 0;
 
     const mutation = `
       mutation {
-        updateAnalytics(
-          where: { id: "SOME_STATIC_ID" }
+        updateTotalVisit(
+          where: { id: "cmdnqotgk6ss07ugpo3kkko2" }
           data: { totalVisits: ${current + 1} }
         ) {
           totalVisits
         }
-        publishAnalytics(where: { id: "SOME_STATIC_ID" }) {
+        publishTotalVisit(where: { id: "cmdnqotgk6ss07ugpo3kkko2" }) {
           id
         }
       }
