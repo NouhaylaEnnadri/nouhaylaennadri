@@ -13,14 +13,6 @@ const PostDetails = ({ post, initialCommentCount }) => {
   const slug = post.slug;
   const category = post.category;
 
-  useEffect(() => {
-    if (!slug) return;
-
-    // 🔐 Track post view silently
-    fetch(`/api/views/${slug}`, {
-      method: "POST",
-    });
-  }, [slug]);
 
   const handleNewComment = (comment) => {
     setNewComment(comment);
