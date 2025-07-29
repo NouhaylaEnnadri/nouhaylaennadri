@@ -46,7 +46,7 @@ const Navbar = () => {
 
           <div className="mx-6 hidden md:flex space-x-4 items-center">
             <Link
-              href="/soon/comingsoon"
+              href="/notes"
               passHref
               className="text-base-content hover:text-secondary transition-colors duration-200"
             >
