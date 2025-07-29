@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import "../styles/globals.scss";
 import { Layout, Preloader } from "../components";
 import Head from "next/head";
-import { Analytics } from "@vercel/analytics/react"; // ✅ Vercel Analytics
+import { Analytics } from "@vercel/analytics/next"
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
