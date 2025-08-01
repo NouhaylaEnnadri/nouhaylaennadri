@@ -175,33 +175,31 @@ export const getComments = async (slug) => {
   return result.comments;
 };
 
-export async function getAllNotes() {
-  const query = `
-    {
-      notes {
+
+export const getAllNotes = async () => {
+  const query = gql`
+    query MyQuery {
+      note {
         title
         slug
         excerpt
-        noteCategory {
-          name
-          slug
+        content {
+          text
+        }
+        notecategory {
+          ... on NoteCategory {
+            id
+            name
+            slug
+          }
         }
       }
     }
   `;
 
-  const res = await fetch(HYGRAPH_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  const json = await res.json();
-  return json.data.notes;
-}
+  const result = await request(graphqlAPI, query);
+  return result.note;
+};
 
 // Inside services.js
 export const getCategoryByPost = async (categorySlug) => {

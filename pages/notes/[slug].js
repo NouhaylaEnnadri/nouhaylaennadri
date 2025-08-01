@@ -1,23 +1,31 @@
 import { useRouter } from "next/router";
 
-const HYGRAPH_ENDPOINT = process.env.HYGRAPH_ENDPOINT;
+const HYGRAPH_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export async function getStaticPaths() {
   const res = await fetch(HYGRAPH_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      query: `{
-        notes {
-          slug
+      query: `
+        {
+          note {
+            slug
+          }
         }
-      }`,
+      `,
     }),
   });
 
-  const { data } = await res.json();
+  const { data, errors } = await res.json();
 
-  const paths = data.notes.map((note) => ({
+  if (errors) console.error("GraphQL errors:", errors);
+  if (!data || !data.note) {
+    console.error("Error fetching slugs:", data);
+    return { paths: [], fallback: false };
+  }
+
+  const paths = data.note.map((note) => ({
     params: { slug: note.slug },
   }));
 
@@ -33,10 +41,12 @@ export async function getStaticProps({ params }) {
         query GetNote($slug: String!) {
           note(where: { slug: $slug }) {
             title
+            excerpt
+            slug
             content {
               html
             }
-            noteCategory {
+            notecategory {
               name
               slug
             }
@@ -47,7 +57,13 @@ export async function getStaticProps({ params }) {
     }),
   });
 
-  const { data } = await res.json();
+  const { data, errors } = await res.json();
+
+  if (errors) console.error("GraphQL errors:", errors);
+  if (!data || !data.note) {
+    console.error("Note not found:", data);
+    return { notFound: true };
+  }
 
   return {
     props: {
@@ -63,8 +79,8 @@ export default function NoteDetail({ note }) {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-2">{note.title}</h1>
-      <p className="text-sm text-secondary mb-4">
-        {note.noteCategory.map((cat) => cat.name).join(", ")}
+      <p className="text-sm text-gray-400 mb-4">
+        {note.notecategory?.map((cat) => cat.name).join(", ")}
       </p>
       <div
         className="prose prose-invert"
