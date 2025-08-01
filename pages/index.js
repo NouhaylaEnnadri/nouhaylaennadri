@@ -3,6 +3,7 @@ import { Category, Footer, PostCard, PostWidget } from "@/components";
 export default function Home() {
   return (
     <>
+      get
       <div className="rounded-lg mb-8 p-4 sm:p-2 sm:mx-2 lg:p-12 lg:mx-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {/* Left Section */}

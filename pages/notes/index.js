@@ -6,12 +6,9 @@ import { useState } from "react";
 export async function getStaticProps() {
   const notes = await getAllNotes();
 
-  // Get unique note categories
   const categories = [
     ...new Set(
-      notes.flatMap((note) =>
-        note.notecategory?.map((cat) => cat.name) || []
-      )
+      notes.flatMap((note) => note.notecategory?.map((cat) => cat.name))
     ),
   ];
 
@@ -28,22 +25,20 @@ export default function Notes({ notes, categories }) {
     : notes;
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#0f0f1a] text-white">
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Sidebar */}
-          <aside className="lg:col-span-2">
-            <h2 className="text-lg font-semibold mb-4 border-b border-white/20 pb-2">
-              Topics
-            </h2>
-            <div className="flex flex-wrap gap-2">
+    <>
+      <div className="rounded-lg mb-12 px-6 py-12 sm:px-10 lg:px-20 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+          {/* Topics Section Under Title */}
+          <div className="lg:col-span-12 mb-8">
+            <h1 className="text-5xl font-bold mb-8">Notes</h1>
+            <div className="flex flex-wrap gap-4">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`text-xs px-3 py-1 rounded-lg border border-white/10 ${
+                className={`text-xs px-4 py-2 rounded-full border transition-all ${
                   selectedCategory === null
-                    ? "bg-white/10 text-white"
-                    : "text-white/60 hover:bg-white/10"
-                } transition`}
+                    ? "bg-secondary text-white border-secondary"
+                    : "text-base-content border-base-content/10 hover:bg-base-200"
+                }`}
               >
                 All
               </button>
@@ -51,46 +46,46 @@ export default function Notes({ notes, categories }) {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`text-xs px-3 py-1 rounded-lg border border-white/10 ${
+                  className={`text-xs px-4 py-2 rounded-full border transition-all ${
                     selectedCategory === cat
-                      ? "bg-white/10 text-white"
-                      : "text-white/60 hover:bg-white/10"
-                  } transition`}
+                      ? "bg-secondary text-white border-secondary"
+                      : "text-base-content border-base-content/10 hover:bg-base-200"
+                  }`}
                 >
                   {cat}
                 </button>
               ))}
             </div>
-          </aside>
+          </div>
 
-          {/* Notes Grid */}
-          <section className="lg:col-span-10">
-            <h1 className="text-4xl font-bold mb-8">Notes</h1>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Notes Section */}
+          <div className="lg:col-span-12">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredNotes.map((note) => (
                 <Link key={note.slug} href={`/notes/${note.slug}`}>
-                  <div className="rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-md hover:scale-[1.01] transition transform cursor-pointer flex flex-col justify-between h-full">
+                  <div className="rounded-2xl p-8 border bg-base-200 border-base-300 hover:scale-[1.01] transition transform cursor-pointer flex flex-col justify-between h-full shadow-lg">
                     <div>
                       {note.notecategory?.[0]?.name && (
-                        <span className="inline-block mb-3 text-xs font-semibold px-3 py-1 rounded-full bg-purple-500/20 text-purple-300">
+                        <span className="inline-block mb-4 text-xs font-semibold px-4 py-1 rounded-full bg-secondary/10 text-secondary">
                           {note.notecategory[0].name}
                         </span>
                       )}
-                      <h2 className="text-xl font-semibold text-white mb-2">
+                      <h2 className="text-2xl font-semibold mb-3">
                         {note.title}
                       </h2>
-                      <p className="text-sm text-white/70">{note.excerpt}</p>
+                      <p className="text-sm opacity-70 leading-relaxed">
+                        {note.excerpt}
+                      </p>
                     </div>
-                    <div className="text-xs text-white/50 mt-4">by Noyl</div>
+                    <div className="text-xs opacity-50 mt-6">by Noyl</div>
                   </div>
                 </Link>
               ))}
             </div>
-          </section>
+          </div>
         </div>
-      </main>
-
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
