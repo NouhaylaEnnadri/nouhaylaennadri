@@ -11,3 +11,6 @@ export { default as Preloader } from "./Preloader";
 export { default as CategoryPage } from "./CategoryPage";
 export { default as ComingSoon } from "./ComingSoon";
 export { default as Footer } from "./Footer";
+export { default as NoteCard } from "./NoteCard";
+export { default as NoteWidget } from "./NoteWidget";
+export { default as NoteCategory } from "./NoteCategory";

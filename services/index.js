@@ -200,6 +200,19 @@ export const getAllNotes = async () => {
   const result = await request(graphqlAPI, query);
   return result.note;
 };
+export const getNoteCategories = async () => {
+  const query = gql`
+    query GetNoteCategories {
+      noteCategories {
+        name
+        slug
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query);
+  return result.noteCategories;
+};
 
 // Inside services.js
 export const getCategoryByPost = async (categorySlug) => {

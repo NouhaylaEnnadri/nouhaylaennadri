@@ -1,86 +1,44 @@
+// pages/notes/index.jsx
 import { getAllNotes } from "@/services";
-import Link from "next/link";
-import Footer from "@/components/Footer";
-import { useState } from "react";
+import { Footer } from "@/components";
+import NoteCard from "@/components/NoteCard";
+import Category from "@/components/Category"; // reuse but make sure it fetches note categories
+import PostWidget from "@/components/PostWidget"; // optional
 
 export async function getStaticProps() {
   const notes = await getAllNotes();
-
-  const categories = [
-    ...new Set(
-      notes.flatMap((note) => note.notecategory?.map((cat) => cat.name))
-    ),
-  ];
-
-  return { props: { notes, categories } };
+  return { props: { notes } };
 }
 
-export default function Notes({ notes, categories }) {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const filteredNotes = selectedCategory
-    ? notes.filter((note) =>
-        note.notecategory?.some((cat) => cat.name === selectedCategory)
-      )
-    : notes;
-
+export default function NotesPage({ notes }) {
   return (
     <>
-      <div className="rounded-lg mb-12 px-6 py-12 sm:px-10 lg:px-20 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
-          {/* Topics Section Under Title */}
-          <div className="lg:col-span-12 mb-8">
-            <h1 className="text-5xl font-bold mb-8">Notes</h1>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => setSelectedCategory(null)}
-                className={`text-xs px-4 py-2 rounded-full border transition-all ${
-                  selectedCategory === null
-                    ? "bg-secondary text-white border-secondary"
-                    : "text-base-content border-base-content/10 hover:bg-base-200"
-                }`}
-              >
-                All
-              </button>
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`text-xs px-4 py-2 rounded-full border transition-all ${
-                    selectedCategory === cat
-                      ? "bg-secondary text-white border-secondary"
-                      : "text-base-content border-base-content/10 hover:bg-base-200"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+      <div className="rounded-lg mb-8 p-4 sm:p-2 sm:mx-2 lg:p-12 lg:mx-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          {/* Sidebar */}
+          <div className="lg:col-span-2 col-span-1 lg:sticky lg:top-16">
+            <div className="rounded-lg p-2 lg:sticky lg:top-16 backdrop-blur-md">
+              <h2 className="text-base hidden lg:block font-semibold border-b border-secondary pb-2 mb-6">
+                Topics
+              </h2>
+              <Category /> {/* ✅ Show note categories */}
             </div>
           </div>
 
           {/* Notes Section */}
-          <div className="lg:col-span-12">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredNotes.map((note) => (
-                <Link key={note.slug} href={`/notes/${note.slug}`}>
-                  <div className="rounded-2xl p-8 border bg-base-200 border-base-300 hover:scale-[1.01] transition transform cursor-pointer flex flex-col justify-between h-full shadow-lg">
-                    <div>
-                      {note.notecategory?.[0]?.name && (
-                        <span className="inline-block mb-4 text-xs font-semibold px-4 py-1 rounded-full bg-secondary/10 text-secondary">
-                          {note.notecategory[0].name}
-                        </span>
-                      )}
-                      <h2 className="text-2xl font-semibold mb-3">
-                        {note.title}
-                      </h2>
-                      <p className="text-sm opacity-70 leading-relaxed">
-                        {note.excerpt}
-                      </p>
-                    </div>
-                    <div className="text-xs opacity-50 mt-6">by Noyl</div>
-                  </div>
-                </Link>
+          <div className="lg:col-span-10 col-span-1 flex flex-col lg:flex-row gap-4">
+            {/* Main Notes Section */}
+            <div className="lg:w-3/5 p-2 sm:p-4 space-y-4">
+              {notes.map((note) => (
+                <NoteCard key={note.slug} note={note} />
               ))}
+            </div>
+
+            {/* Optional Right Sidebar */}
+            <div className="bg-base-100 lg:w-2/5 hidden lg:block flex-col">
+              <div className="p-2 lg:sticky lg:top-16 rounded-lg mb-4">
+                <PostWidget /> {/* optional – can be reused */}
+              </div>
             </div>
           </div>
         </div>
