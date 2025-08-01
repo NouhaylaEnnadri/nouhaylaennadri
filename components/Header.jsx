@@ -46,25 +46,27 @@ const Navbar = () => {
 
           <div className="mx-6 hidden md:flex space-x-4 items-center">
             <Link
+              href="/posts"
+              passHref
+              className="text-base-content hover:text-secondary transition-colors duration-200"
+            >
+              Posts
+            </Link>
+            <Link
               href="/notes"
               passHref
               className="text-base-content hover:text-secondary transition-colors duration-200"
             >
-              Notes
+              notes
             </Link>
             <Link
               href="/soon/comingsoon"
               passHref
               className="text-base-content hover:text-secondary transition-colors duration-200"
             >
-              Reading List
+              Projects
             </Link>
-            <button
-              onClick={toggleCategories}
-              className="text-base-content hover:text-secondary transition-colors duration-200 focus:outline-none"
-            >
-              Topics
-            </button>
+           
             <DarkLight className="w-2 h-2" />
           </div>
 
