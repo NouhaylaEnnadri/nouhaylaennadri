@@ -1,14 +1,17 @@
 import { getAllNotes } from "@/services";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import { useState } from "react";
 
 export async function getStaticProps() {
   const notes = await getAllNotes();
 
-  // 🔁 Extract unique note categories from notes
+  // Get unique note categories
   const categories = [
     ...new Set(
-      notes.flatMap((note) => note.notecategory?.map((cat) => cat.name))
+      notes.flatMap((note) =>
+        note.notecategory?.map((cat) => cat.name) || []
+      )
     ),
   ];
 
@@ -16,6 +19,14 @@ export async function getStaticProps() {
 }
 
 export default function Notes({ notes, categories }) {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const filteredNotes = selectedCategory
+    ? notes.filter((note) =>
+        note.notecategory?.some((cat) => cat.name === selectedCategory)
+      )
+    : notes;
+
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#0f0f1a] text-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
@@ -26,23 +37,37 @@ export default function Notes({ notes, categories }) {
               Topics
             </h2>
             <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`text-xs px-3 py-1 rounded-lg border border-white/10 ${
+                  selectedCategory === null
+                    ? "bg-white/10 text-white"
+                    : "text-white/60 hover:bg-white/10"
+                } transition`}
+              >
+                All
+              </button>
               {categories.map((cat) => (
-                <span
+                <button
                   key={cat}
-                  className="text-xs px-3 py-1 rounded-lg border border-white/10 text-white/80 bg-white/5 hover:bg-white/10 transition"
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`text-xs px-3 py-1 rounded-lg border border-white/10 ${
+                    selectedCategory === cat
+                      ? "bg-white/10 text-white"
+                      : "text-white/60 hover:bg-white/10"
+                  } transition`}
                 >
                   {cat}
-                </span>
+                </button>
               ))}
             </div>
           </aside>
 
-          {/* Notes */}
+          {/* Notes Grid */}
           <section className="lg:col-span-10">
             <h1 className="text-4xl font-bold mb-8">Notes</h1>
-
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {notes.map((note) => (
+              {filteredNotes.map((note) => (
                 <Link key={note.slug} href={`/notes/${note.slug}`}>
                   <div className="rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-md hover:scale-[1.01] transition transform cursor-pointer flex flex-col justify-between h-full">
                     <div>
