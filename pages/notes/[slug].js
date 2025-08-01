@@ -45,10 +45,7 @@ export async function getStaticProps({ params }) {
             slug
             content {
               html
-            }
-            notecategory {
-              name
-              slug
+              text
             }
           }
         }
@@ -65,9 +62,12 @@ export async function getStaticProps({ params }) {
     return { notFound: true };
   }
 
+  // Handle if note is returned as array (unexpected, but safe)
+  const matchedNote = Array.isArray(data.note) ? data.note[0] : data.note;
+
   return {
     props: {
-      note: data.note,
+      note: matchedNote,
     },
   };
 }
@@ -78,14 +78,15 @@ export default function NoteDetail({ note }) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-2">{note.title}</h1>
-      <p className="text-sm text-gray-400 mb-4">
-        {note.notecategory?.map((cat) => cat.name).join(", ")}
-      </p>
-      <div
-        className="prose prose-invert"
-        dangerouslySetInnerHTML={{ __html: note.content.html }}
-      />
+      <h1 className="text-3xl font-bold mb-6">{note.title}</h1>
+
+      <div className="prose prose-invert">
+        {note.content?.html ? (
+          <div dangerouslySetInnerHTML={{ __html: note.content.html }} />
+        ) : (
+          <p className="text-gray-400 italic">No content available.</p>
+        )}
+      </div>
     </div>
   );
 }
