@@ -13,6 +13,7 @@
     "@fontsource/orbitron": "^5.0.20",
     "@tailwindcss/typography": "^0.5.15",
     "@vercel/analytics": "^1.5.0",
+    "framer-motion": "^12.23.12",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.0",
     "html-react-parser": "^5.1.13",
