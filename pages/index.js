@@ -18,21 +18,9 @@ export default function AboutTerminal() {
   }, [index]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-base-100 via-transparent to-base-300 text-base-content relative">
-      {/* Light Background Image on Mobile */}
-      <div className="md:hidden absolute inset-0 z-0 opacity-10">
-        <Image
-          src="/about-me.png"
-          alt="Nouhayla background"
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-white/20" />
-      </div>
-
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-base-100 via-transparent to-base-300 text-base-content">
       {/* Hero Section */}
-      <main className="relative z-10 px-4 sm:px-6 lg:px-12 py-12 flex flex-col md:flex-row gap-10 items-center justify-center">
+      <main className="flex-grow px-4 sm:px-6 lg:px-12 py-12 flex flex-col md:flex-row gap-10 items-center justify-center relative z-10">
         {/* Terminal Info */}
         <div className="space-y-6 max-w-xl">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono">
@@ -57,7 +45,7 @@ export default function AboutTerminal() {
               </p>
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.location</span>{" "}
-                <span className="text-yellow-300">&quot;France 🇫🇷&quot;</span>
+                <span className="text-yellow-300">"France 🇫🇷"</span>
               </p>
               <p>
                 <span className="text-blue-400">&gt; status</span>{" "}
@@ -69,8 +57,8 @@ export default function AboutTerminal() {
           </div>
         </div>
 
-        {/* Image - Desktop Only */}
-        <div className="hidden md:block">
+        {/* Image - shown only on md+ screens */}
+        <div className="hidden md:flex justify-center">
           <Image
             src="/about-me.png"
             alt="Nouhayla pixel portrait"
