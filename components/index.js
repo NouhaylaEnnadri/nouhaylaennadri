@@ -14,3 +14,5 @@ export { default as Footer } from "./Footer";
 export { default as NoteCard } from "./NoteCard";
 export { default as NoteWidget } from "./NoteWidget";
 export { default as NoteCategory } from "./NoteCategory";
+export { default as MouseParticles } from "./MouseParticles";
+export { default as AboutTerminal } from "./AboutTerminal";
