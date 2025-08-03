@@ -18,74 +18,71 @@ export default function AboutTerminal() {
   }, [index]);
 
   return (
-    <div className=" pl-2  pr-2 flex flex-col min-h-screen bg-gradient-to-b from-base-100 via-transparent to-base-300">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-base-100 via-transparent to-base-300 text-base-content relative">
+      {/* Light Background Image on Mobile */}
+      <div className="md:hidden absolute inset-0 z-0 opacity-10">
+        <Image
+          src="/about-me.png"
+          alt="Nouhayla background"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-white/20" />
+      </div>
+
       {/* Hero Section */}
-      <main className="flex-grow px-4 sm:px-6 lg:px-12 py-12 text-base-content relative overflow-hidden">
-        {/* Mobile Background Image */}
-        <div className="md:hidden absolute inset-0 z-0">
-          <Image
-            src="/about-me.png"
-            alt="Nouhayla background portrait"
-            layout="fill"
-            objectFit="cover"
-            className="opacity-20 blur-sm"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/40 z-10" />
-        </div>
+      <main className="relative z-10 px-4 sm:px-6 lg:px-12 py-12 flex flex-col md:flex-row gap-10 items-center justify-center">
+        {/* Terminal Info */}
+        <div className="space-y-6 max-w-xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono">
+            <span className="text-secondary">&gt; </span>
+            {displayText}
+            <span className="animate-pulse text-secondary">|</span>
+          </h1>
 
-        <div className="relative z-20 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Text & Terminal Section */}
-          <div className="space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono">
-              <span className="text-secondary">&gt; </span>
-              {displayText}
-              <span className="animate-pulse text-secondary">|</span>
-            </h1>
-
-            <div className="bg-gray-800 rounded-md shadow-xl font-mono text-sm text-left text-white overflow-hidden w-full max-w-xl border border-white/10">
-              <div className="bg-gray-700 p-2 flex items-center gap-1">
-                <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-                <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
-                <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-              </div>
-              <div className="p-4 space-y-3">
-                <p>
-                  <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
-                  <span className="text-yellow-300">
-                    a curious mind ✨ passionate about machine learning, coding
-                    cool stuff and sipping coffee while solving puzzles.
-                  </span>
-                </p>
-                <p>
-                  <span className="text-blue-400">&gt; Nouhayla.location</span>{" "}
-                  <span className="text-yellow-300">"France 🇫🇷"</span>
-                </p>
-                <p>
-                  <span className="text-blue-400">&gt; status</span>{" "}
-                  <span className="text-green-400">
-                    Learning, building, exploring…
-                  </span>
-                </p>
-              </div>
+          <div className="bg-gray-800 rounded-md shadow-xl font-mono text-sm text-white overflow-hidden border border-white/10">
+            <div className="bg-gray-700 p-2 flex gap-1">
+              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+              <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
+              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+            </div>
+            <div className="p-4 space-y-3">
+              <p>
+                <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
+                <span className="text-yellow-300">
+                  a curious mind ✨ passionate about machine learning, coding
+                  cool stuff and sipping coffee while solving puzzles.
+                </span>
+              </p>
+              <p>
+                <span className="text-blue-400">&gt; Nouhayla.location</span>{" "}
+                <span className="text-yellow-300">&quot;France 🇫🇷&quot;</span>
+              </p>
+              <p>
+                <span className="text-blue-400">&gt; status</span>{" "}
+                <span className="text-green-400">
+                  Learning, building, exploring…
+                </span>
+              </p>
             </div>
           </div>
+        </div>
 
-          {/* Image Section (only on md and up) */}
-          <div className="hidden md:flex justify-center">
-            <Image
-              src="/about-me.png"
-              alt="Nouhayla pixel portrait"
-              width={300}
-              height={300}
-              className="rounded-xl shadow-lg"
-              priority
-            />
-          </div>
+        {/* Image - Desktop Only */}
+        <div className="hidden md:block">
+          <Image
+            src="/about-me.png"
+            alt="Nouhayla pixel portrait"
+            width={300}
+            height={300}
+            className="rounded-xl shadow-lg"
+            priority
+          />
         </div>
       </main>
 
-      {/* Divider */}
+      {/* Section Separator */}
       <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
 
       {/* Experience Section */}
