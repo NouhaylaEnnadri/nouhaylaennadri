@@ -66,7 +66,7 @@ const Navbar = () => {
             >
               Projects
             </Link>
-           
+
             <DarkLight className="w-2 h-2" />
           </div>
 
@@ -99,7 +99,14 @@ const Navbar = () => {
         <div className="md:hidden mx-4 rounded-2xl my-3 bg-base-300 backdrop-blur-lg py-6">
           <div className="max-w-7xl mx-auto px-6 space-y-2">
             <Link
-              href="/soon/comingsoon"
+              href="/posts"
+              passHref
+              className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
+            >
+              Posts
+            </Link>
+            <Link
+              href="/notes"
               passHref
               className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
             >
@@ -110,14 +117,8 @@ const Navbar = () => {
               passHref
               className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
             >
-              Reading List
+              Projects
             </Link>
-            <button
-              onClick={toggleCategories}
-              className="w-full text-left text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
-            >
-              Topics
-            </button>
             {isCategoriesOpen && (
               <div className="bg-base bg-opacity-70 mt-2 p-4 rounded-lg backdrop-blur-md">
                 <nav className="flex flex-wrap gap-2">
