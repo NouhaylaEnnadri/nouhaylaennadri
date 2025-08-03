@@ -1,5 +1,8 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { FaLink } from "react-icons/fa";
 
+// NOTE: Replace this with your actual GraphCMS endpoint
 const HYGRAPH_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export async function getStaticPaths() {
@@ -62,30 +65,50 @@ export async function getStaticProps({ params }) {
     return { notFound: true };
   }
 
-  // Handle if note is returned as array (unexpected, but safe)
-  const matchedNote = Array.isArray(data.note) ? data.note[0] : data.note;
-
   return {
     props: {
-      note: matchedNote,
+      note: data.note,
     },
   };
 }
 
 export default function NoteDetail({ note }) {
   const router = useRouter();
+  const [copied, setCopied] = useState(false);
+
   if (router.isFallback) return <p>Loading...</p>;
 
-  return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-6">{note.title}</h1>
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
-      <div className="prose prose-invert">
-        {note.content?.html ? (
-          <div dangerouslySetInnerHTML={{ __html: note.content.html }} />
-        ) : (
-          <p className="text-gray-400 italic">No content available.</p>
-        )}
+  return (
+    <div className="container mx-auto px-4 lg:px-8 py-12">
+      <div className="max-w-4xl mx-auto bg-base-200 p-6 rounded-xl shadow-lg border border-white/10">
+        <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+          {note.title}
+        </h1>
+        <div className="flex justify-between items-center border-t border-b border-secondary border-opacity-20 py-4 mb-6">
+          <p className="text-sm text-white/60">A note by Noyl</p>
+          <button
+            onClick={handleCopyLink}
+            className="flex items-center gap-2 text-sm text-white/70 hover:text-secondary transition"
+          >
+            <FaLink />
+            {copied ? "Link Copied!" : "Copy Link"}
+          </button>
+        </div>
+
+        <article className="prose prose-invert max-w-none">
+          {note.content?.html ? (
+            <div dangerouslySetInnerHTML={{ __html: note.content.html }} />
+          ) : (
+            <p className="text-gray-400 italic">No content available.</p>
+          )}
+        </article>
       </div>
     </div>
   );

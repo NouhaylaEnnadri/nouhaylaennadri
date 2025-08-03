@@ -28,7 +28,7 @@ export default function AboutTerminal() {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono">
             <span className="text-secondary">&gt; </span>
-            <span className="bg-gradient-to-r from-primary via-secondary to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r text-primary bg-clip-text text-transparent">
               {displayText}
             </span>
             <span className="animate-pulse text-secondary">|</span>
@@ -48,18 +48,18 @@ export default function AboutTerminal() {
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
                 <span className="text-yellow-300">
-                  a curious mind ✨ passionate about machine learning, coding
+                  A curious mind ✨ passionate about machine learning, coding
                   cool stuff and sipping coffee ☕ while solving puzzles 🧩.
                 </span>
               </p>
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.location</span>{" "}
-                <span className="text-yellow-300">"France 🇫🇷"</span>
+                <span className="text-yellow-300">France 🇫🇷</span>
               </p>
               <p>
                 <span className="text-blue-400">&gt; status</span>{" "}
                 <span className="text-green-400">
-                  Learning, building, exploring…
+                  Learning, building, exploring...
                 </span>
               </p>
             </div>
