@@ -1,4 +1,4 @@
-import { Footer } from "@/components";
+import { Experience, Footer } from "@/components";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -46,8 +46,7 @@ export default function AboutTerminal() {
                   <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
                   <span className="text-yellow-300">
                     a curious mind ✨ passionate about machine learning, coding
-                    cool stuff 💻 and sipping coffee ☕ while solving puzzles
-                    🧩.
+                    cool stuff and sipping coffee while solving puzzles .
                   </span>
                 </p>
                 <p>
@@ -77,6 +76,7 @@ export default function AboutTerminal() {
           </div>
         </div>
       </main>
+      <Experience />
 
       {/* Sticky Footer */}
       <footer className="mt-auto">
