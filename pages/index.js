@@ -28,7 +28,7 @@ export default function AboutTerminal() {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono">
             <span className="text-secondary">&gt; </span>
-            <span className="bg-gradient-to-r text-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r text-secondary bg-clip-text ">
               {displayText}
             </span>
             <span className="animate-pulse text-secondary">|</span>
@@ -47,10 +47,7 @@ export default function AboutTerminal() {
             <div className="p-4 space-y-3 leading-relaxed">
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
-                <span className="text-yellow-300">
-                  A curious mind ✨ passionate about machine learning, coding
-                  cool stuff and sipping coffee ☕ while solving puzzles 🧩.
-                </span>
+                <span className="text-yellow-300">BLAB BLA BLA BLA </span>
               </p>
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.location</span>{" "}
@@ -67,7 +64,7 @@ export default function AboutTerminal() {
         </motion.div>
 
         {/* Image - only on md+ */}
-        <div className="hidden md:flex justify-center">
+        <div className="ml-12 hidden md:flex justify-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -78,7 +75,7 @@ export default function AboutTerminal() {
               alt="Nouhayla pixel portrait"
               width={300}
               height={300}
-              className="rounded-xl shadow-lg"
+              className="rounded-xl "
               priority
             />
           </motion.div>
