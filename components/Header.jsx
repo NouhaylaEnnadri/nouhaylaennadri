@@ -105,13 +105,13 @@ const Navbar = () => {
             >
               Posts
             </Link>
-            <Link
+            {/* <Link
               href="/notes"
               passHref
               className="block text-base-content hover:bg-secondary hover:bg-opacity-30 hover:text-secondary transition-colors duration-200 rounded-md px-3 py-2"
             >
               Notes
-            </Link>
+            </Link> */}
             <Link
               href="/soon/comingsoon"
               passHref
