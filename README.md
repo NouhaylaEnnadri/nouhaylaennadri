@@ -1,37 +1,30 @@
-# Noyl Blog Project
+# Nouhayla Ennadri — Blog
 
-A blog built with **Next.js**, **Tailwind CSS**, **Daisy UI**, and **Hygraph**.
+A production blog built with **Next.js**, **Tailwind CSS + DaisyUI**, and **Hygraph (GraphQL)**. Deployed on **Vercel**.
 
-## Technologies
+**Live**: https://noylblog.vercel.app  
+**Repo**: https://github.com/NouhaylaEnnadri/nouhaylaennadri  <!-- update after rename -->
 
-- ![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)
-- ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-- ![Daisy UI](https://img.shields.io/badge/Daisy%20UI-563D7C?style=for-the-badge)
-- ![Hygraph](https://img.shields.io/badge/Hygraph-38B2AC?style=for-the-badge&logo=graphql)
+## Features
+- Hygraph-powered posts (GraphQL)
+- Categories & tags
+- Responsive UI + dark mode (DaisyUI)
+- SEO: dynamic metadata + Open Graph image
+- Fast images via `next/image`
 
-## How to Run
+## Tech Stack
+Next.js • Tailwind CSS • DaisyUI • Hygraph (GraphQL) • Vercel
 
-1. Clone the project:
+## Screenshots
+> Add 2–3 images in `/docs/screenshots/` and embed them here:
+![Home](docs/screenshots/home.png)
+![Post](docs/screenshots/post.png)
 
-   ```bash
-   git clone https://github.com/NouhaylaEnnadri/Noyl_Blog.git
-   cd Noyl_Blog
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-4. Visit `http://localhost:3000` to view the blog.
-
-## Live Demo
-
-[Live Project Link](https://noylblog.vercel.app/)
+## Getting Started
+```bash
+git clone https://github.com/NouhaylaEnnadri/nouhaylaennadri.git
+cd nouhaylaennadri
+npm i
+cp .env.example .env.local
+# Fill in your Hygraph endpoint + token
+npm run dev
