@@ -52,13 +52,13 @@ const Navbar = () => {
             >
               Posts
             </Link>
-            <Link
+            {/* <Link
               href="/notes"
               passHref
               className="text-base-content hover:text-secondary transition-colors duration-200"
             >
               notes
-            </Link>
+            </Link> */}
             <Link
               href="/soon/comingsoon"
               passHref
