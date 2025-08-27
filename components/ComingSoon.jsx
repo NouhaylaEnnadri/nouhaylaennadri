@@ -9,9 +9,8 @@ const ComingSoon = () => {
           Coming Soon
         </h1>
         <p class="text-base-content text-lg mb-8">
-          Working on it! \n you can check my github Tho :
+          Working on it! \n you can check my github Tho:
           <Link href="https://github.com/NouhaylaEnnadri"></Link>
-          ":)"
         </p>
       </div>
     </div>
