@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const ComingSoon = () => {
@@ -9,7 +10,8 @@ const ComingSoon = () => {
         </h1>
         <p class="text-base-content text-lg mb-8">
           Working on it! \n you can check my github Tho :
-          https://github.com/NouhaylaEnnadri : )
+          <Link href="https://github.com/NouhaylaEnnadri"></Link>
+          ":)"
         </p>
       </div>
     </div>
