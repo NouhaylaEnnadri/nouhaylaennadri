@@ -1,27 +1,33 @@
 const experiences = [
   {
-    title: "BPM Developer • Modis Maroc - Triumph",
-    date: "JUN 2023 - SEP 2023 • 3 MOS",
+    title: "Data & Impact Analyst (Volunteer) • International Nonprofit",
+    date: "JAN 2025 – Present • Remote",
     description:
-      "Developed an automated, data-driven workflow for purchase request validation using BonitaSoft BPM, optimizing data flow and enhancing process accuracy.",
+      "Designed and built a scalable Impact Tracker using Power BI, Power Apps, and Excel to centralize KPIs across domains (healthcare, education, water access) and improve reporting cadence. (Tech: Power BI, Power Apps, Excel)",
   },
   {
-    title: "Junior Web Consultant • Euromed Junior Enterprise",
-    date: "FEB 2023 - MAY 2023 • 3 MOS",
+    title: "Junior Consultant in Web & Mobile Development • Euromed Junior Enterprise",
+    date: "NOV 2023 – NOV 2024 • 1 YR 1 MO • Fès, Morocco",
     description:
-      "Collaborated in delivering client solutions with integrated data and web systems. Led the company website’s development as a tool for marketing and internal operations.",
+      "Delivered client-facing web solutions and internal modules; led the company website revamp to support marketing and streamline content/data updates. (Tech: React, Tailwind, Node.js)",
   },
   {
-    title: "Information Systems Intern • UEMF Research Center",
-    date: "JUL 2022 - SEP 2022 • 3 MOS",
+    title: "Software Engineer Intern • Université Euro-Méditerranéenne de Fès (UEMF)",
+    date: "JUN 2024 – AUG 2024 • 3 MOS • Fès, Morocco",
     description:
-      "Built a comprehensive research management platform centralizing dashboards and research data to support academic initiatives.",
+      "Developed the CREM platforms website with Django and React; integrated RESTful APIs and MariaDB; ensured responsive UI and reliable data flows. (Tech: Django, React, MariaDB, REST APIs)",
   },
   {
-    title: "Information Systems Intern • UEMF Research Center",
-    date: "JUL 2022 - SEP 2022 • 3 MOS",
+    title: "BPM Developer • Triumph Group (Modis Maroc)",
+    date: "APR 2023 – MAY 2023 • 2 MOS • Fès, Morocco",
     description:
-      "Built a comprehensive research management platform centralizing dashboards and research data to support academic initiatives.",
+      "Automated the purchase-request validation workflow with BonitaSoft BPM—modeled processes, approvals, and data inputs—improving traceability and reducing handoffs. (Tech: BonitaSoft BPM, SQL)",
+  },
+  {
+    title: "UX Designer • MONEN Technologies",
+    date: "JUN 2022 – JUL 2022 • 2 MOS • Fès, Morocco",
+    description:
+      "Produced user flows, low-fi wireframes, and interactive mockups to support feature design and usability testing. (Tools: Balsamiq, UX Research)",
   },
 ];
 
