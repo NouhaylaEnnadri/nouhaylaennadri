@@ -48,8 +48,10 @@ const Home_PostWidget = ({ category, slug }) => {
   if (error) return <p>Error loading posts: {error.message}</p>;
 
   return (
-    <div className="rounded-lg">
-     
+    <div className="max-w-6xl mx-auto px-4 ">
+     <h2 className="text-3xl sm:text-4xl font-bold text-secondary mb-10">
+       See What I Have to Say
+      </h2>
       {/* ← switch from vertical list to a simple grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.length > 0 ? (
