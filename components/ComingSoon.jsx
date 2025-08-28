@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { FaGithub } from "react-icons/fa";
 
 const ComingSoon = () => {
   return (
@@ -10,8 +11,14 @@ const ComingSoon = () => {
         </h1>
         <p class="text-base-content text-lg mb-8">
           Working on it! \n you can check my github Tho:
-          <Link href="https://github.com/NouhaylaEnnadri"></Link>
         </p>
+        <a
+          href="https://github.com/NouhaylaEnnadri"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        <FaGithub size={60} className="text-secondary hover:scale-110 transition-transform" />
+        </a>
       </div>
     </div>
   );
