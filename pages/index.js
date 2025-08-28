@@ -50,7 +50,7 @@ export default function AboutTerminal() {
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
                 <span className="text-teal-400">
-                  Engineering student in Big Data Analytics & Machine Learning
+                  Big Data Analytics & Machine Learning Engineer
                 </span>
               </p>
               <p>
