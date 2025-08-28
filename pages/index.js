@@ -47,16 +47,25 @@ export default function AboutTerminal() {
             <div className="p-4 space-y-3 leading-relaxed">
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
-                <span className="text-yellow-300">BLAB BLA BLA BLA </span>
+                <span className="text-yellow-300">
+                  Engineering student in Big Data Analytics — specializing in
+                  Machine Learning (Exchange @ EPF Montpellier)
+                </span>
               </p>
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.location</span>{" "}
-                <span className="text-yellow-300">France 🇫🇷</span>
+                <span className="text-yellow-300">Montpellier, France 🇫🇷</span>
               </p>
               <p>
                 <span className="text-blue-400">&gt; status</span>{" "}
                 <span className="text-green-400">
                   Learning, building, exploring...
+                </span>
+              </p>
+              <p>
+                <span className="text-blue-400">&gt; lookingFor</span>{" "}
+                <span className="text-pink-400">
+                  Data Science / Machine Learning Internship (2025)
                 </span>
               </p>
             </div>
