@@ -1,7 +1,8 @@
-import { Experience, Footer, Skills } from "@/components";
+import { Experience, Footer, Skills, Home_PostWidget } from "@/components";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutTerminal() {
   const [displayText, setDisplayText] = useState("");
@@ -18,6 +19,7 @@ export default function AboutTerminal() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-base-100 via-transparent to-base-300 text-base-content">
+      {/* Hero Section */}
       <main className="flex-grow px-4 sm:px-6 lg:px-12 py-12 flex flex-col md:flex-row gap-10 items-center justify-center relative z-10">
         {/* Typing & Terminal Section */}
         <motion.div
@@ -47,9 +49,8 @@ export default function AboutTerminal() {
             <div className="p-4 space-y-3 leading-relaxed">
               <p>
                 <span className="text-blue-400">&gt; Nouhayla.About</span>{" "}
-                <span className="text-yellow-300">
-                  Engineering student in Big Data Analytics — specializing in
-                  Machine Learning (Exchange @ EPF Montpellier)
+                <span className="text-teal-400">
+                  Engineering student in Big Data Analytics & Machine Learning
                 </span>
               </p>
               <p>
@@ -94,12 +95,30 @@ export default function AboutTerminal() {
       {/* Section Separator */}
       <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
 
+      {/* Latest Posts Section */}
+   <section className="px-4 sm:px-6 lg:px-12 py-12">
+  <h2 className="text-2xl font-bold mb-6 border-b border-secondary pb-2">
+    See What I Have to Say
+  </h2>
+  <Home_PostWidget />
+  <div className="mt-4">
+    <Link href="/posts" className="text-secondary font-medium hover:underline">
+      → View all posts
+    </Link>
+  </div>
+</section>
+
+
+      <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
+
+      {/* Experience Section */}
       <section className="px-4 sm:px-6 lg:px-12">
         <Experience />
       </section>
 
       <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
 
+      {/* Skills Section */}
       <section className="px-4 sm:px-6 lg:px-12">
         <Skills />
       </section>

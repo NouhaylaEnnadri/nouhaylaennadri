@@ -17,3 +17,4 @@ export { default as NoteCategory } from "./NoteCategory";
 export { default as MouseParticles } from "./MouseParticles";
 export { default as Experience } from "./Experience";
 export { default as Skills } from "./Skills";
+export { default as Home_PostWidget } from "./Home_PostWidget";
