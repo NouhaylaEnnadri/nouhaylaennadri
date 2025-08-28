@@ -96,33 +96,34 @@ export default function AboutTerminal() {
       <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
 
       {/* Latest Posts Section */}
-   <section className="px-4 sm:px-6 lg:px-12 py-12">
-  <h2 className="text-2xl font-bold mb-6 border-b border-secondary pb-2">
-    See What I Have to Say
-  </h2>
-  <Home_PostWidget />
-  <div className="mt-4">
-    <Link href="/posts" className="text-secondary font-medium hover:underline">
-      → View all posts
-    </Link>
-  </div>
-</section>
-
+      <section className="px-4 sm:px-6 lg:px-12 py-12">
+        <h2 className="text-2xl font-bold mb-6 border-b border-secondary pb-2">
+          See What I Have to Say
+        </h2>
+        <Home_PostWidget />
+        <div className="mt-4">
+          <Link
+            href="/posts"
+            className="text-secondary font-medium hover:underline"
+          >
+            → View all posts
+          </Link>
+        </div>
+      </section>
 
       <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
 
       {/* Experience Section */}
-      <section className="px-4 sm:px-6 lg:px-12">
-        <Experience />
-      </section>
 
       <hr className="border-t border-white/10 mx-6 sm:mx-8 lg:mx-12" />
 
       {/* Skills Section */}
-      <section className="px-4 sm:px-6 lg:px-12">
+      <section className="sm:px-6 lg:px-12">
         <Skills />
       </section>
-
+      <section className="px-4 sm:px-6 lg:px-12">
+        <Experience />
+      </section>
       <footer className="mt-auto">
         <Footer />
       </footer>

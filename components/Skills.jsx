@@ -1,67 +1,102 @@
+"use client";
+
 import { useState } from "react";
 import {
   FaCloud,
   FaDatabase,
   FaServer,
   FaCode,
-  FaLinkedin,
+  FaGithub,
+  FaBrain,
+  FaChartLine,
 } from "react-icons/fa";
-import {
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiTailwindcss,
-  SiHtml5,
-  SiCss3,
-  SiPython,
-  SiBootstrap,
-  SiFigma,
-} from "react-icons/si";
 
 const skillData = {
-  frontend: {
-    title: "Frontend Development",
+  ml: {
+    title: "Machine Learning & Data Science",
     description:
-      "I focus on building intuitive and responsive interfaces using tools like React, Tailwind CSS, HTML/CSS, and Figma.",
+      "Core ML stack I use for analysis, modeling and evaluation. Focus on building end-to-end, well-explained workflows.",
     tools: [
-      SiJavascript,
-      SiTypescript,
-      SiReact,
-      SiTailwindcss,
-      SiHtml5,
-      SiCss3,
-      SiBootstrap,
-      SiFigma,
+      "Python",
+      "Pandas",
+      "NumPy",
+      "scikit-learn",
+      "Matplotlib",
+      "Seaborn",
+      "Plotly",
+      "Statsmodels",
+      "Model evaluation",
+      "Feature engineering",
     ],
   },
-  backend: {
-    title: "Backend Development",
+  nlp: {
+    title: "NLP & Time Series (this year)",
     description:
-      "I work with server-side technologies and APIs, focusing on Node.js and Python to build scalable systems.",
-    tools: [SiJavascript, SiPython],
+      "Current focus from my exchange program in ML: NLP foundations and time-series forecasting with best practices & diagnostics.",
+    tools: [
+      "Text preprocessing",
+      "spaCy",
+      "Hugging Face (basics)",
+      "Classical NLP (TF-IDF, n-grams)",
+      "Evaluation (F1, ROC/AUC)",
+      "SARIMA",
+      "ACF/PACF",
+      "Walk-forward validation",
+      "Responsible AI",
+    ],
   },
-  database: {
-    title: "Database Technologies",
+  data: {
+    title: "Data Engineering",
     description:
-      "I’ve handled structured and unstructured data using technologies like MySQL and MongoDB.",
-    tools: [FaDatabase],
+      "Collecting, cleaning and moving data with reliability in mind: SQL and ETL fundamentals for analytics pipelines.",
+    tools: [
+      "SQL",
+      "MySQL",
+      "T-SQL / PL-SQL",
+      "MongoDB",
+      "ETL",
+      "Data Quality",
+      "Schema design",
+      "APIs",
+    ],
   },
-  devops: {
+  web: {
+    title: "Web Development",
+    description:
+      "Front-end & basic back-end to ship data products and dashboards.",
+    tools: [
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "ASP.NET Core",
+      "Figma (UI)",
+    ],
+  },
+  cloud: {
     title: "Cloud & DevOps",
-    description:
-      "Experience with automation, deployment, and CI/CD workflows using GitHub Actions and cloud platforms.",
-    tools: [FaCloud],
+    description: "Lightweight deployment/automation for projects and demos.",
+    tools: [
+      "Git / GitHub",
+      "GitHub Actions (CI/CD)",
+      "Vercel",
+      "Containers (basics)",
+      "Env management",
+    ],
   },
 };
 
 const Skills = () => {
-  const [active, setActive] = useState("frontend");
+  const [active, setActive] = useState("ml");
 
   const tabs = [
-    { key: "devops", label: "Cloud & DevOps", icon: <FaCloud /> },
-    { key: "backend", label: "Backend Development", icon: <FaServer /> },
-    { key: "database", label: "Database Technologies", icon: <FaDatabase /> },
-    { key: "frontend", label: "Frontend Development", icon: <FaCode /> },
+    { key: "ml", label: "ML & Data Science", icon: <FaBrain /> },
+    { key: "nlp", label: "NLP & Time Series", icon: <FaChartLine /> },
+    { key: "data", label: "Data Engineering", icon: <FaServer /> },
+    { key: "web", label: "Web Development", icon: <FaCode /> },
+    { key: "cloud", label: "Cloud & DevOps", icon: <FaCloud /> },
   ];
 
   const { title, description, tools } = skillData[active];
@@ -96,23 +131,26 @@ const Skills = () => {
           <h3 className="text-xl font-semibold text-base-content">{title}</h3>
           <p className="text-sm text-base-content/80">{description}</p>
 
-          <div className="flex flex-wrap gap-4 pt-4">
-            {tools.map((Icon, index) => (
-              <Icon
-                key={index}
-                className="text-2xl sm:text-3xl text-secondary hover:scale-110 transition-transform"
-              />
+          {/* Text badges so you can list any library/tool */}
+          <div className="flex flex-wrap gap-2 pt-2">
+            {tools.map((t, i) => (
+              <span
+                key={i}
+                className="text-xs font-medium px-2.5 py-1 rounded-md border border-secondary/50 text-base-content/90"
+              >
+                {t}
+              </span>
             ))}
           </div>
 
           <a
-            href="https://www.linkedin.com/in/nouhayla-en-nadri-845778231/"
+            href="https://github.com/NouhaylaEnnadri"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center mt-4 text-sm font-medium text-secondary hover:underline"
           >
-            <FaLinkedin className="mr-2" />
-            View my LinkedIn
+            <FaGithub className="mr-2" />
+            View my Github
           </a>
         </div>
       </div>
